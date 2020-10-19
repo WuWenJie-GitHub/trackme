@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.LinebufferpointMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.LinebufferpointEntity" id="linebufferpointMap">
+        <result property="id" column="id"/>
+        <result property="enclosureid" column="enclosureId"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="deleted" column="deleted"/>
+        <result property="remark" column="remark"/>
+        <result property="owner" column="owner"/>
+        <result property="createdate" column="createDate"/>
+        <result property="sortno" column="sortNo"/>
+        <result property="nodeno" column="nodeNo"/>
+    </resultMap>
+
+
+</mapper>

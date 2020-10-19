@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.WarnmsginformMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.WarnmsginformEntity" id="warnmsginformMap">
+        <result property="id" column="id"/>
+        <result property="addiinfo" column="addiinfo"/>
+        <result property="angle" column="angle"/>
+        <result property="createTime" column="create_time"/>
+        <result property="dataType" column="data_type"/>
+        <result property="dealResult" column="deal_result"/>
+        <result property="dealTime" column="deal_time"/>
+        <result property="extInfo" column="ext_info"/>
+        <result property="height" column="height"/>
+        <result property="infoId" column="info_id"/>
+        <result property="lat" column="lat"/>
+        <result property="loading" column="loading"/>
+        <result property="lon" column="lon"/>
+        <result property="orgWarnId" column="org_warn_id"/>
+        <result property="origin" column="origin"/>
+        <result property="redoEndTime" column="redo_end_time"/>
+        <result property="redoFlag" column="redo_flag"/>
+        <result property="redoId" column="redo_id"/>
+        <result property="redoTime" column="redo_time"/>
+        <result property="result" column="result"/>
+        <result property="speed" column="speed"/>
+        <result property="status1" column="status1"/>
+        <result property="status2" column="status2"/>
+        <result property="status3" column="status3"/>
+        <result property="subType" column="sub_type"/>
+        <result property="text" column="text"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="valid" column="valid"/>
+        <result property="vehicleId" column="vehicle_id"/>
+        <result property="warnContent" column="warn_content"/>
+        <result property="warnSrc" column="warn_src"/>
+        <result property="warnTime" column="warn_time"/>
+        <result property="warnType" column="warn_type"/>
+        <result property="dealUser" column="deal_user"/>
+        <result property="mask" column="mask"/>
+        <result property="extId" column="ext_id"/>
+    </resultMap>
+
+
+</mapper>

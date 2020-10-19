@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.FuelchangerecordMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.FuelchangerecordEntity" id="fuelchangerecordMap">
+        <result property="id" column="ID"/>
+        <result property="plateno" column="PlateNo"/>
+        <result property="fuel" column="Fuel"/>
+        <result property="type" column="Type"/>
+        <result property="happentime" column="HappenTime"/>
+        <result property="createdate" column="CreateDate"/>
+        <result property="deleted" column="Deleted"/>
+        <result property="manual" column="Manual"/>
+        <result property="location" column="Location"/>
+        <result property="latitude" column="Latitude"/>
+        <result property="longitude" column="Longitude"/>
+        <result property="mileage" column="Mileage"/>
+        <result property="owner" column="Owner"/>
+        <result property="remark" column="remark"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="enclosureid" column="enclosureId"/>
+    </resultMap>
+
+
+</mapper>

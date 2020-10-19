@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.PlatformstateMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.PlatformstateEntity" id="platformstateMap">
+        <result property="stateid" column="stateId"/>
+        <result property="mainlinkstate" column="mainLinkState"/>
+        <result property="mainlinkdate" column="mainLinkDate"/>
+        <result property="sublinkstate" column="subLinkState"/>
+        <result property="sublinkdate" column="subLinkDate"/>
+        <result property="gpsserverstate" column="gpsServerState"/>
+        <result property="gpsserverdate" column="gpsServerDate"/>
+    </resultMap>
+
+
+</mapper>

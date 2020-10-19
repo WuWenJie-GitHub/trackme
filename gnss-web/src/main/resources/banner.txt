@@ -1,0 +1,5 @@
+${AnsiColor.AnsiBackground.BLACK}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         永无BUG
+GNSS-Web(v${spring.application.version}) by www.gps-pro.cn
+Spring-Boot${spring-boot.formatted-version}

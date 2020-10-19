@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.BasicdataMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.BasicdataEntity" id="basicdataMap">
+        <result property="baseid" column="baseId"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="parent" column="parent"/>
+        <result property="meta" column="meta"/>
+        <result property="deleted" column="deleted"/>
+        <result property="createdate" column="createDate"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="remark" column="remark"/>
+        <result property="owner" column="owner"/>
+        <result property="sn" column="sn"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.Gpsrealdata20200225Mapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.Gpsrealdata20200225Entity" id="gpsrealdata20200225Map">
+        <result property="id" column="ID"/>
+        <result property="simno" column="simNo"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="location" column="location"/>
+        <result property="sendtime" column="sendTime"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="velocity" column="velocity"/>
+        <result property="direction" column="direction"/>
+        <result property="status" column="status"/>
+        <result property="gas" column="gas"/>
+        <result property="mileage" column="mileage"/>
+        <result property="recordvelocity" column="recordVelocity"/>
+        <result property="remain" column="Remain"/>
+        <result property="online" column="online"/>
+        <result property="signals" column="Signals"/>
+        <result property="alarmstate" column="alarmState"/>
+        <result property="dvrstatus" column="dvrStatus"/>
+        <result property="altitude" column="altitude"/>
+        <result property="valid" column="valid"/>
+        <result property="depid" column="depId"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="updatedate" column="updateDate"/>
+        <result property="createdate" column="createDate"/>
+        <result property="enclosureid" column="enclosureId"/>
+        <result property="enclosuretype" column="enclosureType"/>
+        <result property="enclosurealarm" column="enclosureAlarm"/>
+        <result property="overspeedareatype" column="overSpeedAreaType"/>
+        <result property="overspeedareaid" column="overSpeedAreaId"/>
+        <result property="routesegmentid" column="routeSegmentId"/>
+        <result property="runtimeonroute" column="runTimeOnRoute"/>
+        <result property="routealarmtype" column="routeAlarmType"/>
+        <result property="cellid" column="CELLID"/>
+        <result property="lac" column="LAC"/>
+        <result property="mnc" column="MNC"/>
+    </resultMap>
+
+
+</mapper>

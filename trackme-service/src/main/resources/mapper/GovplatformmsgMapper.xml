@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.GovplatformmsgMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.GovplatformmsgEntity" id="govplatformmsgMap">
+        <result property="funcid" column="funcId"/>
+        <result property="createdate" column="createDate"/>
+        <result property="deleted" column="deleted"/>
+        <result property="owner" column="owner"/>
+        <result property="remark" column="remark"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="msg" column="msg"/>
+        <result property="msgtype" column="msgType"/>
+        <result property="platecolor" column="plateColor"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+
+</mapper>

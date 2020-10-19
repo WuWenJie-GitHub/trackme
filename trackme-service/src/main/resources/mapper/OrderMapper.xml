@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.OrderMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.OrderEntity" id="orderMap">
+        <result property="序号" column="序号"/>
+        <result property="设备号" column="设备号"/>
+        <result property="唯一终端id号" column="唯一终端ID号"/>
+        <result property="供应商sim卡号" column="供应商SIM卡号"/>
+        <result property="系统sim号" column="系统sim号"/>
+        <result property="临时牌号" column="临时牌号"/>
+        <result property="4s店" column="4S店"/>
+        <result property="经销商" column="经销商"/>
+    </resultMap>
+
+
+</mapper>

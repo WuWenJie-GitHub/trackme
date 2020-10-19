@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.VehicleMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.VehicleEntity" id="vehicleMap">
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="vehicletype" column="vehicleType"/>
+        <result property="platecolor" column="plateColor"/>
+        <result property="monitor" column="Monitor"/>
+        <result property="driver" column="Driver"/>
+        <result property="status" column="status"/>
+        <result property="runstatus" column="runStatus"/>
+        <result property="total" column="Total"/>
+        <result property="remain" column="Remain"/>
+        <result property="deleted" column="deleted"/>
+        <result property="createdate" column="CreateDate"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="gpsid" column="gpsId"/>
+        <result property="videodeviceid" column="VideoDeviceId"/>
+        <result property="sortid" column="SortId"/>
+        <result property="vehicledevicetype" column="VehicleDeviceType"/>
+        <result property="dvronline" column="DvrOnline"/>
+        <result property="motorid" column="MotorID"/>
+        <result property="installdate" column="installDate"/>
+        <result property="simno" column="simNo"/>
+        <result property="dvrcard" column="DVRCard"/>
+        <result property="drivermobile" column="DriverMobile"/>
+        <result property="monitormobile" column="MonitorMobile"/>
+        <result property="vehcolor" column="vehColor"/>
+        <result property="operpermit" column="operPermit"/>
+        <result property="lastchecktime" column="LastCheckTime"/>
+        <result property="buydate" column="buyDate"/>
+        <result property="onlinetime" column="OnlineTime"/>
+        <result property="offlinetime" column="OfflineTime"/>
+        <result property="vendor" column="vendor"/>
+        <result property="factoryno" column="factoryNo"/>
+        <result property="owner" column="owner"/>
+        <result property="remark" column="remark"/>
+        <result property="depid" column="depId"/>
+        <result property="depname" column="depName"/>
+        <result property="gpsterminaltype" column="gpsTerminalType"/>
+        <result property="usetype" column="useType"/>
+        <result property="industry" column="industry"/>
+        <result property="routes" column="routes"/>
+        <result property="region" column="region"/>
+        <result property="termid" column="termId"/>
+        <result property="buytime" column="buyTime"/>
+        <result property="memberid" column="memberId"/>
+        <result property="enddate" column="endDate"/>
+        <result property="startdate" column="startDate"/>
+        <result property="insuredate" column="insureDate"/>
+        <result property="insureid" column="insureId"/>
+        <result property="warrantydate" column="warrantyDate"/>
+        <result property="maintaindate" column="maintainDate"/>
+        <result property="mortgagedate" column="mortgageDate"/>
+        <result property="mortgagelife" column="mortgageLife"/>
+        <result property="mortgagebank" column="mortgageBank"/>
+        <result property="paymonthly" column="payMonthly"/>
+        <result property="vin" column="VIN"/>
+        <result property="carcolor" column="carColor"/>
+        <result property="maintainmileage" column="maintainMileage"/>
+        <result property="iswarrantyml" column="IsWarrantyMl"/>
+        <result property="scopewarrantyml" column="scopeWarrantyMl"/>
+        <result property="warrantymileage" column="warrantyMileage"/>
+    </resultMap>
+
+
+</mapper>

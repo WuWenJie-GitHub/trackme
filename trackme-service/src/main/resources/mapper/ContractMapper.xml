@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.ContractMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.ContractEntity" id="contractMap">
+        <result property="id" column="id"/>
+        <result property="vehicleOwner" column="vehicle_owner"/>
+        <result property="idCard" column="id_card"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="vehicleType" column="vehicle_type"/>
+        <result property="price" column="price"/>
+        <result property="vin" column="vin"/>
+        <result property="engineno" column="engineNo"/>
+        <result property="deviceNumber" column="device_number"/>
+        <result property="sim" column="sim"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="firstBeneficiary" column="first_beneficiary"/>
+        <result property="founder" column="founder"/>
+        <result property="createdate" column="createDate"/>
+        <result property="state" column="state"/>
+        <result property="isnew" column="isNew"/>
+        <result property="ispass" column="isPass"/>
+        <result property="deleted" column="deleted"/>
+        <result property="num" column="num"/>
+        <result property="install4s" column="install4S"/>
+        <result property="owner" column="owner"/>
+        <result property="remarks" column="remarks"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="remark" column="remark"/>
+        <result property="limitmoney" column="limitMoney"/>
+        <result property="depid" column="depId"/>
+    </resultMap>
+
+
+</mapper>

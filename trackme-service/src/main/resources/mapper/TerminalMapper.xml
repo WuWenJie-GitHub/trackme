@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.TerminalMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.TerminalEntity" id="terminalMap">
+        <result property="termid" column="termId"/>
+        <result property="devno" column="devNo"/>
+        <result property="termno" column="termNo"/>
+        <result property="versoftware" column="verSoftware"/>
+        <result property="verhardware" column="verHardware"/>
+        <result property="verprotocol" column="verProtocol"/>
+        <result property="makefactory" column="makeFactory"/>
+        <result property="maketime" column="makeTime"/>
+        <result property="makeno" column="makeNo"/>
+        <result property="state" column="state"/>
+        <result property="reserve" column="reserve"/>
+        <result property="remark" column="remark"/>
+        <result property="installtime" column="installTime"/>
+        <result property="waitor" column="waitor"/>
+        <result property="installaddress" column="installAddress"/>
+        <result property="updatetime" column="updateTime"/>
+        <result property="termtype" column="termType"/>
+        <result property="simno" column="simNo"/>
+        <result property="bind" column="bind"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="createdate" column="createDate"/>
+        <result property="owner" column="owner"/>
+        <result property="deleted" column="deleted"/>
+        <result property="seqno" column="seqNo"/>
+        <result property="depid" column="DepId"/>
+    </resultMap>
+
+
+</mapper>

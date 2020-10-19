@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.LinesegmentMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.LinesegmentEntity" id="linesegmentMap">
+        <result property="segid" column="segId"/>
+        <result property="enclosureid" column="enclosureId"/>
+        <result property="pointid" column="pointId"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="linewidth" column="lineWidth"/>
+        <result property="isstation" column="isStation"/>
+        <result property="limitspeed" column="limitSpeed"/>
+        <result property="bytime" column="byTime"/>
+        <result property="maxspeed" column="maxSpeed"/>
+        <result property="overspeedtime" column="overSpeedTime"/>
+        <result property="maxtimelimit" column="maxTimeLimit"/>
+        <result property="mintimelimit" column="minTimeLimit"/>
+        <result property="alarmtype" column="alarmType"/>
+        <result property="createdate" column="createDate"/>
+        <result property="deleted" column="deleted"/>
+        <result property="latitude1" column="latitude1"/>
+        <result property="longitude1" column="longitude1"/>
+        <result property="latitude2" column="latitude2"/>
+        <result property="longitude2" column="longitude2"/>
+        <result property="name" column="name"/>
+        <result property="remark" column="remark"/>
+        <result property="owner" column="owner"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="station" column="station"/>
+    </resultMap>
+
+
+</mapper>

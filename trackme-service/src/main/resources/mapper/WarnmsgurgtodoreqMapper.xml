@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.WarnmsgurgtodoreqMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.WarnmsgurgtodoreqEntity" id="warnmsgurgtodoreqMap">
+        <result property="id" column="id"/>
+        <result property="ackflag" column="ackFlag"/>
+        <result property="acktime" column="ackTime"/>
+        <result property="createdate" column="createDate"/>
+        <result property="origin" column="origin"/>
+        <result property="result" column="result"/>
+        <result property="supervicsionid" column="supervicsionId"/>
+        <result property="supervisionendtime" column="supervisionEndTime"/>
+        <result property="supervisionlevel" column="supervisionLevel"/>
+        <result property="supervisor" column="supervisor"/>
+        <result property="supervisoremail" column="supervisorEmail"/>
+        <result property="supervisortel" column="supervisorTel"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="warnsrc" column="warnSrc"/>
+        <result property="warntime" column="warnTime"/>
+        <result property="warntype" column="warnType"/>
+        <result property="deleted" column="deleted"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="owner" column="owner"/>
+        <result property="remark" column="remark"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="platecolor" column="plateColor"/>
+    </resultMap>
+
+
+</mapper>

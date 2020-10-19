@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.SysdiagramsMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.SysdiagramsEntity" id="sysdiagramsMap">
+        <result property="name" column="name"/>
+        <result property="principalId" column="principal_id"/>
+        <result property="diagramId" column="diagram_id"/>
+        <result property="version" column="version"/>
+        <result property="definition" column="definition"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.MediaitemMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.MediaitemEntity" id="mediaitemMap">
+        <result property="mediaitemid" column="mediaItemId"/>
+        <result property="commandid" column="commandId"/>
+        <result property="commandtype" column="commandType"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="simno" column="simNo"/>
+        <result property="sendtime" column="sendTime"/>
+        <result property="mediadataid" column="mediaDataId"/>
+        <result property="mediatype" column="mediaType"/>
+        <result property="codeformat" column="codeFormat"/>
+        <result property="channelid" column="channelId"/>
+        <result property="eventcode" column="eventCode"/>
+        <result property="filename" column="fileName"/>
+        <result property="createdate" column="createDate"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="speed" column="speed"/>
+        <result property="deleted" column="deleted"/>
+        <result property="owner" column="owner"/>
+        <result property="remark" column="remark"/>
+        <result property="location" column="location"/>
+    </resultMap>
+
+
+</mapper>

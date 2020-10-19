@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.KilediMileageStatisticsSummaryMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.KilediMileageStatisticsSummaryEntity" id="kilediMileageStatisticsSummaryMap">
+        <result property="id" column="Id"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="simno" column="simNo"/>
+        <result property="yesterdaymileage" column="YesterdayMileage"/>
+        <result property="weekmileage" column="WeekMileage"/>
+        <result property="monthmileage" column="MonthMileage"/>
+        <result property="updatetime" column="UpdateTime"/>
+        <result property="updatetimeweek" column="UpdateTimeWeek"/>
+        <result property="updatetimemonth" column="UpdateTimeMonth"/>
+        <result property="isstate" column="IsState"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.EnclosurebindingMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.EnclosurebindingEntity" id="enclosurebindingMap">
+        <result property="bindid" column="bindId"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="enclosureid" column="enclosureId"/>
+        <result property="depid" column="depId"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="deleted" column="deleted"/>
+        <result property="owner" column="owner"/>
+        <result property="remark" column="remark"/>
+        <result property="createdate" column="createDate"/>
+        <result property="configtype" column="configType"/>
+        <result property="commandid" column="commandId"/>
+        <result property="platform" column="platform"/>
+        <result property="terminal" column="terminal"/>
+    </resultMap>
+
+
+</mapper>

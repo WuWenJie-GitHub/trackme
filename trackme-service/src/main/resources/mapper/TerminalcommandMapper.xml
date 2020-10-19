@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.TerminalcommandMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.TerminalcommandEntity" id="terminalcommandMap">
+        <result property="cmdid" column="cmdId"/>
+        <result property="createdate" column="createDate"/>
+        <result property="deleted" column="deleted"/>
+        <result property="owner" column="owner"/>
+        <result property="remark" column="remark"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="sn" column="SN"/>
+        <result property="cmd" column="cmd"/>
+        <result property="cmddata" column="cmdData"/>
+        <result property="cmdtype" column="cmdType"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="simno" column="simNo"/>
+        <result property="status" column="status"/>
+        <result property="updatedate" column="updateDate"/>
+        <result property="userid" column="userId"/>
+        <result property="vehicleid" column="vehicleId"/>
+    </resultMap>
+
+
+</mapper>

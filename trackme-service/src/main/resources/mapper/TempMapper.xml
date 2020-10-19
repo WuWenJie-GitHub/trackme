@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.TempMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.TempEntity" id="tempMap">
+        <result property="alarmid" column="alarmId"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="starttime" column="startTime"/>
+        <result property="endtime" column="endTime"/>
+        <result property="timespan" column="timeSpan"/>
+        <result property="velocity" column="velocity"/>
+        <result property="status" column="status"/>
+        <result property="driver" column="driver"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="location" column="location"/>
+        <result property="latitude1" column="latitude1"/>
+        <result property="longitude1" column="longitude1"/>
+        <result property="location1" column="location1"/>
+        <result property="processed" column="processed"/>
+        <result property="processedtime" column="processedTime"/>
+        <result property="type" column="type"/>
+        <result property="childtype" column="childType"/>
+        <result property="station" column="station"/>
+        <result property="valvestate" column="valveState"/>
+        <result property="valvestate1" column="valveState1"/>
+        <result property="gas1" column="gas1"/>
+        <result property="gas2" column="gas2"/>
+        <result property="mileage1" column="mileage1"/>
+        <result property="mileage2" column="mileage2"/>
+        <result property="videofilename" column="videoFileName"/>
+        <result property="flag" column="flag"/>
+        <result property="remark" column="remark"/>
+        <result property="createdate" column="createDate"/>
+        <result property="deleted" column="deleted"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="owner" column="owner"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="responsesn" column="responseSn"/>
+        <result property="processeduserid" column="processedUserId"/>
+        <result property="processedusername" column="processedUserName"/>
+    </resultMap>
+
+
+</mapper>

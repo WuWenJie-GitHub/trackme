@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.GpsmileageMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.GpsmileageEntity" id="gpsmileageMap">
+        <result property="id" column="ID"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="gaslastcomp" column="gasLastComp"/>
+        <result property="mileagelastcomp" column="mileageLastComp"/>
+        <result property="lastcomptime" column="lastCompTime"/>
+        <result property="mileagelasthour" column="mileageLastHour"/>
+        <result property="gaslasthour" column="gasLastHour"/>
+        <result property="mileagelastday" column="mileageLastDay"/>
+        <result property="gaslastday" column="gasLastDay"/>
+        <result property="mileagelastmonth" column="mileageLastMonth"/>
+        <result property="gaslastmonth" column="gasLastMonth"/>
+        <result property="createdate" column="createDate"/>
+        <result property="deleted" column="deleted"/>
+        <result property="owner" column="owner"/>
+        <result property="remark" column="remark"/>
+        <result property="tenantid" column="tenantId"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.SiminfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.SiminfoEntity" id="siminfoMap">
+        <result property="id" column="id"/>
+        <result property="f1" column="f1"/>
+        <result property="f2" column="f2"/>
+        <result property="f3" column="f3"/>
+        <result property="f4" column="f4"/>
+        <result property="f5" column="f5"/>
+        <result property="f6" column="f6"/>
+        <result property="f7" column="f7"/>
+        <result property="f8" column="f8"/>
+        <result property="seqNo" column="seq_no"/>
+        <result property="state" column="state"/>
+        <result property="code" column="code"/>
+        <result property="reserve" column="reserve"/>
+        <result property="remark" column="remark"/>
+        <result property="desp" column="desp"/>
+        <result property="region" column="region"/>
+    </resultMap>
+
+
+</mapper>

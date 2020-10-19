@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.KilediDeviceRepairMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.KilediDeviceRepairEntity" id="kilediDeviceRepairMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="repairContacts" column="repair_contacts"/>
+        <result property="repairPhone" column="repair_phone"/>
+        <result property="repairLocation" column="repair_location"/>
+        <result property="repairProblem" column="repair_problem"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createName" column="create_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>

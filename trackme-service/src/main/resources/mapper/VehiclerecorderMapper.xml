@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.VehiclerecorderMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.VehiclerecorderEntity" id="vehiclerecorderMap">
+        <result property="recorderid" column="recorderId"/>
+        <result property="commandid" column="commandId"/>
+        <result property="cmd" column="cmd"/>
+        <result property="cmddata" column="cmdData"/>
+        <result property="drivercode" column="DriverCode"/>
+        <result property="driverlicense" column="driverLicense"/>
+        <result property="vinno" column="VinNo"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="platetype" column="PlateType"/>
+        <result property="featurefactor" column="FeatureFactor"/>
+        <result property="deleted" column="deleted"/>
+        <result property="createdate" column="createDate"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="platecolor" column="PlateColor"/>
+        <result property="starttime" column="startTime"/>
+        <result property="owner" column="owner"/>
+        <result property="speed" column="speed"/>
+        <result property="signals" column="signals"/>
+        <result property="sortid" column="sortId"/>
+        <result property="remark" column="remark"/>
+        <result property="endtime" column="endTime"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="altitude" column="altitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+    </resultMap>
+
+
+</mapper>

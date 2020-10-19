@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.KilediVerifyCodeMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.KilediVerifyCodeEntity" id="kilediVerifyCodeMap">
+        <result property="id" column="id"/>
+        <result property="telephone" column="telephone"/>
+        <result property="verifyCode" column="verify_code"/>
+        <result property="createTime" column="create_time"/>
+        <result property="codeType" column="code_type"/>
+        <result property="idertifier" column="idertifier"/>
+    </resultMap>
+
+
+</mapper>

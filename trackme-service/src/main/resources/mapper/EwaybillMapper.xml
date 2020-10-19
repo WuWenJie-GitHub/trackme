@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.EwaybillMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.EwaybillEntity" id="ewaybillMap">
+        <result property="billid" column="billId"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="platecolor" column="plateColor"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="econtent" column="eContent"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="createdate" column="createDate"/>
+        <result property="owner" column="owner"/>
+        <result property="deleted" column="deleted"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+
+</mapper>

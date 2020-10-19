@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.KilediUserStatisticsMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.KilediUserStatisticsEntity" id="kilediUserStatisticsMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="mileage" column="mileage"/>
+        <result property="velocity" column="velocity"/>
+        <result property="statisticsDate" column="statistics_date"/>
+        <result property="statisticsYear" column="statistics_year"/>
+        <result property="statisticsMonth" column="statistics_month"/>
+        <result property="deviceNumber" column="device_number"/>
+    </resultMap>
+
+
+</mapper>

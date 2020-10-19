@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.KilediUserMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.KilediUserEntity" id="kilediUserMap">
+        <result property="id" column="id"/>
+        <result property="telephone" column="telephone"/>
+        <result property="speedingRemind" column="speeding_remind"/>
+        <result property="fortificationRemind" column="fortification_remind"/>
+        <result property="insuranceMaturityRemind" column="insurance_maturity_remind"/>
+        <result property="maintenanceMaturityRemind" column="maintenance_maturity_remind"/>
+        <result property="collisionRemind" column="collision_remind"/>
+        <result property="trackRecord" column="track_record"/>
+        <result property="openId" column="open_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createName" column="create_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+        <result property="fortifyRang" column="fortify_rang"/>
+        <result property="fortifyLongitude" column="fortify_longitude"/>
+        <result property="fortifyLatitude" column="fortify_latitude"/>
+        <result property="fortifyStatus" column="fortify_status"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="password" column="password"/>
+        <result property="username" column="username"/>
+    </resultMap>
+
+
+</mapper>

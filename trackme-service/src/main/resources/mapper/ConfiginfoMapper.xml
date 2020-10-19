@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.ConfiginfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.ConfiginfoEntity" id="configinfoMap">
+        <result property="id" column="ID"/>
+        <result property="vehicleid" column="vehicleID"/>
+        <result property="mask" column="mask"/>
+        <result property="term" column="term"/>
+        <result property="connumber" column="conNumber"/>
+        <result property="console1" column="console1"/>
+        <result property="console2" column="console2"/>
+        <result property="console3" column="console3"/>
+        <result property="console4" column="console4"/>
+        <result property="console5" column="console5"/>
+        <result property="smsc" column="smsc"/>
+        <result property="flagscfgsmsc" column="FlagsCFGSMSC"/>
+        <result property="agent" column="agent"/>
+        <result property="answercnl" column="AnswerCnl"/>
+        <result property="alarmcnl" column="AlarmCnl"/>
+        <result property="gpscnl" column="GpsCnl"/>
+        <result property="mode" column="Mode"/>
+        <result property="pulse" column="Pulse"/>
+        <result property="apnname1" column="ApnName1"/>
+        <result property="ip1" column="IP1"/>
+        <result property="port1" column="PORT1"/>
+        <result property="flags1" column="Flags1"/>
+        <result property="status1" column="Status1"/>
+        <result property="apnname2" column="ApnName2"/>
+        <result property="ip2" column="IP2"/>
+        <result property="port2" column="PORT2"/>
+        <result property="flags2" column="Flags2"/>
+        <result property="status2" column="Status2"/>
+        <result property="flagsfun" column="FlagsFUN"/>
+        <result property="code" column="Code"/>
+        <result property="alarmbit" column="AlarmBit"/>
+        <result property="failurebit" column="FailureBit"/>
+        <result property="registerbit" column="RegisterBit"/>
+        <result property="registerspan1" column="RegisterSpan1"/>
+        <result property="registerspan2" column="RegisterSpan2"/>
+        <result property="autoarm" column="AutoArm"/>
+        <result property="eventmask" column="EventMask"/>
+        <result property="eventbit" column="EventBit"/>
+        <result property="popedombit" column="PopedomBit"/>
+        <result property="resettime" column="ResetTime"/>
+        <result property="ltastart" column="ltaStart"/>
+        <result property="ltaend" column="ltaEnd"/>
+        <result property="osavalue" column="OsaValue"/>
+        <result property="osatime" column="OsaTime"/>
+        <result property="otavalue" column="OtaValue"/>
+        <result property="resttime" column="RestTime"/>
+        <result property="kind" column="kind"/>
+        <result property="countphone" column="countPHONE"/>
+        <result property="phone1" column="phone1"/>
+        <result property="phone2" column="phone2"/>
+        <result property="phone3" column="phone3"/>
+        <result property="phone4" column="phone4"/>
+        <result property="flagsphone" column="FlagsPHONE"/>
+        <result property="flagsmone" column="FlagsMONE"/>
+        <result property="modemone" column="ModeMONE"/>
+        <result property="rtncnl" column="RtnCnl"/>
+        <result property="rtnencode" column="RtnEncode"/>
+        <result property="rtntotalpacket" column="RtnTotalPacket"/>
+        <result property="countofpacket" column="CountOfPacket"/>
+        <result property="distanceofpacket" column="DistanceOfPacket"/>
+        <result property="timeofpacket" column="TimeOfPacket"/>
+        <result property="moncount" column="MonCount"/>
+        <result property="mondistance" column="MonDistance"/>
+        <result property="montime" column="MonTime"/>
+        <result property="monflags" column="MonFlags"/>
+        <result property="montracks" column="MonTracks"/>
+        <result property="countpolygon" column="countPOLYGON"/>
+        <result property="polygonid1" column="PolygonID1"/>
+        <result property="polygonid2" column="PolygonID2"/>
+        <result property="polygonid3" column="PolygonID3"/>
+        <result property="polygonid4" column="PolygonID4"/>
+        <result property="paramLength" column="param_length"/>
+        <result property="paramBuffer" column="param_buffer"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.FencealarmMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.FencealarmEntity" id="fencealarmMap">
+        <result property="id" column="id"/>
+        <result property="openId" column="open_id"/>
+        <result property="deviceNumber" column="device_number"/>
+        <result property="rang" column="rang"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="alarmId" column="alarm_id"/>
+        <result property="maintenanceMileage" column="maintenance_mileage"/>
+        <result property="status" column="status"/>
+        <result property="insuranceStatus" column="insurance_status"/>
+        <result property="speedingStatus" column="speeding_status"/>
+        <result property="collisionStatus" column="collision_status"/>
+        <result property="maintenanceStatus" column="maintenance_status"/>
+        <result property="updatetime" column="updateTime"/>
+    </resultMap>
+
+
+</mapper>

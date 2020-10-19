@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.FileurlrecordMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.FileurlrecordEntity" id="fileurlrecordMap">
+        <result property="id" column="id"/>
+        <result property="userid" column="userId"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="type" column="type"/>
+        <result property="channel" column="channel"/>
+        <result property="fileurl" column="fileUrl"/>
+        <result property="sendtime" column="sendTime"/>
+        <result property="createtime" column="createTime"/>
+    </resultMap>
+
+
+</mapper>

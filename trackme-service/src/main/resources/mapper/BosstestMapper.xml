@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.BosstestMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.BosstestEntity" id="bosstestMap">
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="vin" column="VIN"/>
+        <result property="simno" column="simNo"/>
+        <result property="depname" column="depName"/>
+        <result property="vendor" column="vendor"/>
+        <result property="buytime" column="buyTime"/>
+        <result property="maintaindate" column="maintainDate"/>
+        <result property="warrantydate" column="warrantyDate"/>
+        <result property="insuredate" column="insureDate"/>
+        <result property="mortgagedate" column="mortgageDate"/>
+        <result property="mortgagelife" column="mortgageLife"/>
+        <result property="paymonthly" column="payMonthly"/>
+        <result property="installdate" column="installDate"/>
+        <result property="startdate" column="startDate"/>
+        <result property="enddate" column="endDate"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="licheng" column="licheng"/>
+    </resultMap>
+
+
+</mapper>

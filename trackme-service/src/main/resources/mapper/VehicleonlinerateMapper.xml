@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.VehicleonlinerateMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.VehicleonlinerateEntity" id="vehicleonlinerateMap">
+        <result property="id" column="ID"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="intervaldescr" column="intervalDescr"/>
+        <result property="hour" column="hour"/>
+        <result property="staticdate" column="staticDate"/>
+        <result property="onlinetime" column="onlineTime"/>
+        <result property="intervaltype" column="intervalType"/>
+        <result property="offlinetime" column="offlineTime"/>
+        <result property="totaltime" column="totalTime"/>
+        <result property="deleted" column="deleted"/>
+        <result property="owner" column="owner"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="remark" column="remark"/>
+        <result property="createdate" column="createDate"/>
+        <result property="onlinerate" column="onlineRate"/>
+    </resultMap>
+
+
+</mapper>

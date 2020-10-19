@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.KilediRescueMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.KilediRescueEntity" id="kilediRescueMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="deviceNumber" column="device_number"/>
+        <result property="fourStores" column="four_stores"/>
+        <result property="telephone" column="telephone"/>
+        <result property="carNumber" column="car_number"/>
+        <result property="carLongitude" column="car_longitude"/>
+        <result property="carLatitude" column="car_latitude"/>
+        <result property="address" column="address"/>
+        <result property="rescueDeviceNumber" column="rescue_device_number"/>
+        <result property="rescueCarTelephone" column="rescue_car_telephone"/>
+        <result property="rescueCarNumber" column="rescue_car_number"/>
+        <result property="sueTime" column="sue_time"/>
+        <result property="rescueTime" column="rescue_time"/>
+        <result property="finishTime" column="finish_time"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createName" column="create_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+        <result property="rescueUserId" column="rescue_user_id"/>
+        <result property="rescueCarLongitude" column="rescue_car_longitude"/>
+        <result property="rescueCarLatitude" column="rescue_car_latitude"/>
+        <result property="rescueAddress" column="rescue_address"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="rescueCarVehicleid" column="rescue_car_vehicleId"/>
+    </resultMap>
+
+
+</mapper>

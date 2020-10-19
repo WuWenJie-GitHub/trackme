@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.BossbaojingMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.BossbaojingEntity" id="bossbaojingMap">
+        <result property="chepai" column="chepai"/>
+        <result property="yanse" column="yanse"/>
+        <result property="4s" column="4s"/>
+        <result property="baojing1" column="baojing1"/>
+        <result property="baojing2" column="baojing2"/>
+        <result property="vin" column="VIN"/>
+        <result property="chezhu" column="chezhu"/>
+        <result property="shouji" column="shouji"/>
+        <result property="vid" column="Vid"/>
+    </resultMap>
+
+
+</mapper>

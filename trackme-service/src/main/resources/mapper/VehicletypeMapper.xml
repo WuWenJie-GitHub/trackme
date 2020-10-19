@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.VehicletypeMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.VehicletypeEntity" id="vehicletypeMap">
+        <result property="id" column="id"/>
+        <result property="amount" column="amount"/>
+        <result property="code" column="code"/>
+        <result property="description" column="description"/>
+        <result property="parentcode" column="parentCode"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.MemberinfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.MemberinfoEntity" id="memberinfoMap">
+        <result property="id" column="id"/>
+        <result property="memno" column="memNo"/>
+        <result property="memtype" column="memType"/>
+        <result property="memFormNo" column="mem_form_no"/>
+        <result property="memTime" column="mem_time"/>
+        <result property="address" column="address"/>
+        <result property="licenseno" column="licenseNo"/>
+        <result property="orgno" column="orgNo"/>
+        <result property="contactphone" column="contactPhone"/>
+        <result property="contact" column="contact"/>
+        <result property="owner" column="owner"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="deleted" column="deleted"/>
+        <result property="bankCode" column="bank_code"/>
+        <result property="businessscope" column="businessScope"/>
+        <result property="remark" column="remark"/>
+        <result property="bankName" column="bank_name"/>
+        <result property="accountName" column="account_name"/>
+        <result property="name" column="name"/>
+        <result property="createdate" column="createDate"/>
+        <result property="depid" column="depId"/>
+    </resultMap>
+
+
+</mapper>

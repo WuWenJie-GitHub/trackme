@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.Jt809commandMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.Jt809commandEntity" id="jt809commandMap">
+        <result property="cmdid" column="cmdId"/>
+        <result property="simno" column="simNo"/>
+        <result property="plateno" column="plateNo"/>
+        <result property="descr" column="descr"/>
+        <result property="cmd" column="cmd"/>
+        <result property="cmddata" column="cmdData"/>
+        <result property="createdate" column="createDate"/>
+        <result property="owner" column="owner"/>
+        <result property="status" column="status"/>
+        <result property="remark" column="remark"/>
+        <result property="sn" column="SN"/>
+        <result property="userid" column="userId"/>
+        <result property="deleted" column="deleted"/>
+        <result property="platecolor" column="plateColor"/>
+        <result property="subcmd" column="subCmd"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="source" column="source"/>
+        <result property="updatedate" column="updateDate"/>
+    </resultMap>
+
+
+</mapper>

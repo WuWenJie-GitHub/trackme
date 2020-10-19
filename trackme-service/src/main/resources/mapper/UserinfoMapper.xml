@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.UserinfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.UserinfoEntity" id="userinfoMap">
+        <result property="userid" column="userId"/>
+        <result property="name" column="name"/>
+        <result property="loginname" column="loginName"/>
+        <result property="password" column="password"/>
+        <result property="remark" column="remark"/>
+        <result property="userstate" column="userState"/>
+        <result property="mapcenterlat" column="mapCenterLat"/>
+        <result property="mapcenterlng" column="mapCenterLng"/>
+        <result property="maplevel" column="mapLevel"/>
+        <result property="maptype" column="mapType"/>
+        <result property="updatetime" column="updateTime"/>
+        <result property="userflag" column="userFlag"/>
+        <result property="createdate" column="createDate"/>
+        <result property="deleted" column="deleted"/>
+        <result property="tenantid" column="tenantId"/>
+        <result property="owner" column="owner"/>
+        <result property="regionid" column="regionId"/>
+        <result property="superadmin" column="superAdmin"/>
+        <result property="ownerid" column="ownerId"/>
+    </resultMap>
+
+
+</mapper>

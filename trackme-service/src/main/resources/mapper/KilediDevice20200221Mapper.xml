@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trackme.webgis.mapper.KilediDevice20200221Mapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.trackme.webgis.entity.KilediDevice20200221Entity" id="kilediDevice20200221Map">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="deviceNumber" column="device_number"/>
+        <result property="fourStores" column="four_stores"/>
+        <result property="frameNumber" column="frame_number"/>
+        <result property="drivingLicenseNumber" column="driving_license_number"/>
+        <result property="carNumber" column="car_number"/>
+        <result property="pickDate" column="pick_date"/>
+        <result property="insuranceDate" column="insurance_date"/>
+        <result property="cardDate" column="card_date"/>
+        <result property="deviceUse" column="device_use"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createName" column="create_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+        <result property="useType" column="use_type"/>
+        <result property="maintainDate" column="maintain_date"/>
+        <result property="termid" column="termId"/>
+        <result property="vehicleid" column="vehicleId"/>
+        <result property="tempCarNumber" column="temp_car_number"/>
+    </resultMap>
+
+
+</mapper>
