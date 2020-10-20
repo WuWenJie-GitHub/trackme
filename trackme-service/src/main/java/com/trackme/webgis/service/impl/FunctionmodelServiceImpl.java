@@ -1,12 +1,15 @@
 package com.trackme.webgis.service.impl;
 
 import com.trackme.common.constant.Constant;
+import com.trackme.common.utils.R;
 import com.trackme.common.vo.MapToolMenuVo;
 import com.trackme.common.vo.MenuVo;
 import com.trackme.common.vo.TerminalCommandMenuVo;
 import com.trackme.common.vo.WebMenuVo;
 import com.trackme.webgis.entity.RolefuncEntity;
+import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.entity.UserroleEntity;
+import com.trackme.webgis.service.LoginService;
 import com.trackme.webgis.service.RolefuncService;
 import com.trackme.webgis.service.UserroleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,8 @@ import com.trackme.webgis.mapper.FunctionmodelMapper;
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.service.FunctionmodelService;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Service
 public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, FunctionmodelEntity> implements FunctionmodelService {
@@ -37,6 +42,9 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
 
     @Autowired
     RolefuncService rolefuncService;
+
+    @Autowired
+    LoginService loginService;
 
     @Override
     public List<FunctionmodelEntity> getFuncModeByUserID(Integer userid) {
@@ -73,7 +81,9 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
             menuVo.setIcon(funcMode.getIcon());
             menuVo.setCode(funcMode.getName());
             menuVo.setId(funcMode.getFuncid());
-            menuVo.setAttributes((Map<String, Object>) new HashMap<String, Object>().put("funcName", funcMode.getName()));
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("funcName", funcMode.getName());
+            menuVo.setAttributes(map);
             return menuVo;
         }).collect(Collectors.toList());
 
@@ -98,8 +108,9 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
             menuVo.setText(topFuncMode.getDescr());
             menuVo.setIcon(topFuncMode.getIcon());
             menuVo.setId(topFuncMode.getFuncid());
-            menuVo.setAttributes((Map<String, Object>) new HashMap<String, Object>().put("url", topFuncMode.getUrl()));
-
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("url", topFuncMode.getUrl());
+            menuVo.setAttributes(map);
             List<WebMenuVo> childrenMenu = funcModes.stream().sorted((func1,func2) -> {
                 return (func1.getMenusort() == null ? 0 : func1.getMenusort()) - (func2.getMenusort() == null ? 0 : func2.getMenusort());
             }).filter(func ->
@@ -109,7 +120,9 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
                 menuVo1.setText(func.getDescr());
                 menuVo1.setIcon(func.getIcon());
                 menuVo1.setId(func.getFuncid());
-                menuVo1.setAttributes((Map<String, Object>) new HashMap<String, Object>().put("url", func.getUrl()));
+                HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+                stringObjectHashMap.put("url", func.getUrl());
+                menuVo1.setAttributes(stringObjectHashMap);
                 return menuVo1;
             }).filter(menuVo1 ->
                 menuVo != null
@@ -139,13 +152,29 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
             menuVo.setIcon(funcMode.getIcon());
             menuVo.setCode(funcMode.getName());
             menuVo.setId(funcMode.getFuncid());
-            menuVo.setAttributes((Map<String, Object>) new HashMap<String, Object>().put("funcName", funcMode.getName()));
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("funcName", funcMode.getName());
+            menuVo.setAttributes(map);
 
             setMenuVoAttr(menuVo, funcMode, funcModes);
 
             return menuVo;
         }).collect(Collectors.toList());
         return terminalCommandMenuVo;
+    }
+
+    /**
+     * 根据用户权限，获取地图工具栏菜单\系统顶部的主菜单\终端命令菜单
+     */
+    @Override
+    public R getAllMenu(HttpServletRequest request) {
+        R loginInfo = loginService.getLoginInfo(request);
+
+        List<MapToolMenuVo> mapToolMenu = (List<MapToolMenuVo>) loginInfo.get("mapToolMenu");
+        List<WebMenuVo> webMenu = (List<WebMenuVo>) loginInfo.get("webMenu");
+        List<TerminalCommandMenuVo> terminalCommandMenu = (List<TerminalCommandMenuVo>) loginInfo.get("terminalCommandMenu");
+
+        return R.ok().put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu);
     }
 
 
@@ -161,7 +190,9 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
                 menuVo1.setIcon(funcMode.getIcon());
                 menuVo1.setCode(funcMode.getName());
                 menuVo1.setId(funcMode.getFuncid());
-                menuVo1.setAttributes((Map<String, Object>) new HashMap<String, Object>().put("funcName", funcMode.getName()));
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("funcName", funcMode.getName());
+                menuVo1.setAttributes(map);
 
                 menuVo.getAttributes().put("menu",menuVo1);
 

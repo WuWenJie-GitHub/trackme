@@ -1,5 +1,6 @@
 package com.trackme.webgis.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trackme.common.constant.SecretConstant;
 import com.trackme.common.form.LoginForm;
@@ -35,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Service
-public class LogniServiceImpl implements LoginService {
+public class LoginServiceImpl implements LoginService {
 
     @Autowired
     RedisTemplate redisTemplate;
@@ -99,6 +100,7 @@ public class LogniServiceImpl implements LoginService {
                 funcModes = functionmodelService.getFuncModeByUserID(user.getUserid());
             }
 
+
             //根据用户权限，获取地图工具栏菜单
             List<MapToolMenuVo> mapToolMenu = functionmodelService.getMapToolMenu(funcModes);
 
@@ -161,6 +163,9 @@ public class LogniServiceImpl implements LoginService {
         return image;
     }
 
+    /**
+     * 获取用户信息\用户权限\地图工具栏菜单\系统顶部的主菜单\终端命令菜单
+     */
     @Override
     public R getLoginInfo(HttpServletRequest request) {
         String token = getRequestToken(request);
@@ -168,8 +173,25 @@ public class LogniServiceImpl implements LoginService {
         //解密客户编号
         String decryptUserId = AESSecretUtil.decryptToStr((String)claims.get("userId"), SecretConstant.DATAKEY);
         int id = Integer.parseInt(decryptUserId);
+        //用户信息
         UserinfoEntity user = userinfoService.getById(id);
-        return R.ok().put("user",user);
+
+        //用户权限
+        List<FunctionmodelEntity> funcModes = null;
+        if (user.getUserflag() == Constant.USER_FLAG_SUPER_ADMIN ) {
+            //超级用户，将加所有权限,可以分配所有管理部门
+            funcModes = functionmodelService.list(null);
+        } else {
+            //根据用户角色获取权限
+            funcModes = functionmodelService.getFuncModeByUserID(user.getUserid());
+        }
+
+        //根据用户权限，获取地图工具栏菜单\系统顶部的主菜单\终端命令菜单
+        List<MapToolMenuVo> mapToolMenu = functionmodelService.getMapToolMenu(funcModes);
+        List<WebMenuVo> webMenu = functionmodelService.getWebMenu(funcModes);
+        List<TerminalCommandMenuVo> terminalCommandMenu = functionmodelService.getTerminalCommandMenu(funcModes);
+
+        return R.ok().put("user",user).put("func",funcModes).put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu);
     }
 
     @Override
