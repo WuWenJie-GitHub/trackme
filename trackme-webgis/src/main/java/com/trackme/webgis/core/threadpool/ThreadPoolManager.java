@@ -1,6 +1,6 @@
-package com.trackme.common.threadpool;
+package com.trackme.webgis.core.threadpool;
 
-import com.trackme.common.utils.ApplicationContextUtil;
+import com.trackme.webgis.core.beanUtil.ApplicationContextUtil;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 

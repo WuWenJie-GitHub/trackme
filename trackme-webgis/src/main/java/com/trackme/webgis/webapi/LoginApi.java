@@ -5,7 +5,7 @@ import com.trackme.common.utils.R;
 import com.trackme.common.vo.MapToolMenuVo;
 import com.trackme.common.vo.TerminalCommandMenuVo;
 import com.trackme.common.vo.WebMenuVo;
-import com.trackme.webgis.annotation.Log;
+import com.trackme.webgis.core.annotation.Log;
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.service.FunctionmodelService;
@@ -32,7 +32,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@Api(value = "LoginApi", description = "登录相关的接口")
+@Api(value = "LoginApi", description = "登录管理")
 public class LoginApi {
 
     @Autowired

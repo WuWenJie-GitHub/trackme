@@ -1,4 +1,4 @@
-package com.trackme.webgis.aop;
+package com.trackme.webgis.core.aop;
 
 import com.trackme.common.utils.AOPUtils;
 import lombok.extern.slf4j.Slf4j;

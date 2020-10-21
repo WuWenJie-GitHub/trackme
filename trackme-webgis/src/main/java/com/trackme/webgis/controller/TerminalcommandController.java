@@ -3,6 +3,7 @@ package com.trackme.webgis.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.trackme.webgis.core.annotation.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,9 +35,10 @@ public class TerminalcommandController {
      * 列表
      */
     @RequestMapping("/list")
+    @Log("终端日志列表")
     public R list(@RequestParam Map<String, Object> params){
-
-        return R.ok().put("page", null);
+        PageUtils page = terminalcommandService.queryParams(params);
+        return R.ok().put("page", page);
     }
 
 

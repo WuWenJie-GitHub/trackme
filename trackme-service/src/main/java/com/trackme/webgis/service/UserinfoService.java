@@ -15,6 +15,9 @@ import java.util.Map;
  */
 public interface UserinfoService extends IService<UserinfoEntity> {
 
+    PageUtils queryPage(Map<String,Object> params);
+
+    Map<String,Object> getUserStateOption();
 }
 
 

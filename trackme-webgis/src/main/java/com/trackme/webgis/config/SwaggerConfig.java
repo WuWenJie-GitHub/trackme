@@ -35,6 +35,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.trackme.webgis.webapi"))//这里写的是API接口所在的包位置
+                .apis(RequestHandlerSelectors.basePackage("com.trackme.webgis.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

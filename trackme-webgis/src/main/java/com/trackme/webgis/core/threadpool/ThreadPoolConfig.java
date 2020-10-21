@@ -1,4 +1,4 @@
-package com.trackme.common.threadpool;
+package com.trackme.webgis.core.threadpool;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

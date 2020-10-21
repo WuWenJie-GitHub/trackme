@@ -1,16 +1,17 @@
-package com.trackme.webgis.aop;
+package com.trackme.webgis.core.aop;
 
+import com.trackme.common.constant.SecretConstant;
+import com.trackme.common.jwt.AESSecretUtil;
 import com.trackme.common.jwt.JwtHelper;
-import com.trackme.common.threadpool.ThreadPoolManager;
+import com.trackme.webgis.core.threadpool.ThreadPoolManager;
 import com.trackme.common.utils.HttpContextUtils;
 import com.trackme.common.utils.IPUtils;
-import com.trackme.webgis.annotation.Log;
+import com.trackme.webgis.core.annotation.Log;
 import com.trackme.webgis.entity.OperationlogEntity;
 import com.trackme.webgis.service.OperationlogService;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -35,7 +36,7 @@ public class LogAop {
     @Autowired
     OperationlogService operationlogService;
 
-    @Pointcut(value = "@annotation(com.trackme.webgis.annotation.Log)")
+    @Pointcut(value = "@annotation(com.trackme.webgis.core.annotation.Log)")
     public void cutService(){
 
     }
@@ -68,7 +69,8 @@ public class LogAop {
         //用户ID和用户名称
         String token = request.getHeader("token");
         Claims claims = JwtHelper.parseJWT(token);
-        Object userId = claims.get("userId");
+        //解密客户编号
+        String userId = AESSecretUtil.decryptToStr((String)claims.get("userId"), SecretConstant.DATAKEY);
         Object userName = claims.get("userName");
 
         //备注
@@ -87,7 +89,7 @@ public class LogAop {
         log.setDetail(className+"."+methodName+"()");
         log.setIp(ipAddr);
         log.setUrl(url);
-        log.setUserid((Integer) userId);
+        log.setUserid(Integer.parseInt(userId));
         log.setUsername((String) userName);
         log.setRemark(value);
 

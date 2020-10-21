@@ -44,16 +44,12 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
             //retJSON为空则说明jwt超时或非法
             if(StringUtils.isNotBlank(retJson)){
                 JSONObject jsonObject = JSONObject.parseObject(retJson);
-                //获取刷新后的jwt值，设置到响应头中
-//                response.setHeader("token", jsonObject.getString("freshToken"));
-//                return true;
                 //校验客户端信息
                 String userAgent = request.getHeader("User-Agent");
                 if (userAgent.equals(jsonObject.getString("userAgent"))) {
                     //获取刷新后的jwt值，设置到响应头中
-                    response.setHeader("User-Token", jsonObject.getString("freshToken"));
-//                    //将客户编号设置到session中
-//                    request.getSession().setAttribute(GlobalConstant.SESSION_CUSTOMER_NO_KEY, jsonObject.getString("userId"));
+                    response.setHeader("token", jsonObject.getString("freshToken"));
+                    //todo 是否要写入redis中
                     return true;
                 }else{
                     log.warn("[登录校验拦截器]-客户端浏览器信息与JWT中存的浏览器信息不一致，重新登录。当前浏览器信息:{}", userAgent);
@@ -86,6 +82,6 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
     private void responseMessage(HttpServletResponse response,String message) throws IOException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
-        response.getOutputStream().write(JSONObject.toJSONString(R.error(message)).getBytes("UTF-8"));
+        response.getOutputStream().write(JSONObject.toJSONString(R.error(401,message)).getBytes("UTF-8"));
     }
 }

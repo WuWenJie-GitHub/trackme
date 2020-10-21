@@ -18,6 +18,8 @@ import java.util.Map;
 public interface OperationlogService extends IService<OperationlogEntity> {
 
     void saveLoginInfo(UserinfoEntity user, HttpServletRequest request);
+
+    PageUtils queryParams(Map<String,Object> params);
 }
 
 

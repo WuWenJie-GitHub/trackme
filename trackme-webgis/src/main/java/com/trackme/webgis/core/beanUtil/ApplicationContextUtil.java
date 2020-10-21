@@ -1,4 +1,4 @@
-package com.trackme.common.utils;
+package com.trackme.webgis.core.beanUtil;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

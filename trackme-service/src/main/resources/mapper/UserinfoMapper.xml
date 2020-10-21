@@ -26,5 +26,13 @@
         <result property="ownerid" column="ownerId"/>
     </resultMap>
 
+    <select id="selectUserInfo" resultType="java.util.Map">
+        select ui.loginName,ui.name userName,ui.userState,ui.createDate,r.name roleName,ui.owner
+        FROM
+            userinfo ui
+        INNER JOIN userrole ur ON ui.userId = ur.userId
+        INNER JOIN role r ON ur.roleId = r.roleId
+        limit #{page},#{limit}
+    </select>
 
 </mapper>

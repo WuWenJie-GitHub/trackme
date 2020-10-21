@@ -1,5 +1,6 @@
 package com.trackme.webgis.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trackme.common.utils.IPUtils;
 import com.trackme.webgis.entity.UserinfoEntity;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,14 @@ public class OperationlogServiceImpl extends ServiceImpl<OperationlogMapper, Ope
         log.setUrl(request.getRequestURI());
         log.setCreatedate(new Date());
         this.baseMapper.insert(log);
+    }
+
+    @Override
+    public PageUtils queryParams(Map<String, Object> params) {
+        IPage<OperationlogEntity> iPage = this.page(
+                new Query<OperationlogEntity>().getPage(params),
+                new QueryWrapper<OperationlogEntity>().orderByDesc("createDate")
+        );
+        return new PageUtils(iPage);
     }
 }

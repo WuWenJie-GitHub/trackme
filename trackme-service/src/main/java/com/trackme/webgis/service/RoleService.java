@@ -2,8 +2,10 @@ package com.trackme.webgis.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trackme.common.utils.PageUtils;
+import com.trackme.common.vo.OptionVo;
 import com.trackme.webgis.entity.RoleEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,6 +17,9 @@ import java.util.Map;
  */
 public interface RoleService extends IService<RoleEntity> {
 
+    List<OptionVo> getRoleOptions();
+
+    PageUtils queryPage(Map<String,Object> params);
 }
 
 

@@ -15,6 +15,7 @@ import java.util.Map;
  */
 public interface TerminalcommandService extends IService<TerminalcommandEntity> {
 
+    PageUtils queryParams(Map<String,Object> params);
 }
 
 

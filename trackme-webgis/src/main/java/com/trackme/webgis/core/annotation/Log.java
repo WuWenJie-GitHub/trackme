@@ -1,4 +1,4 @@
-package com.trackme.webgis.annotation;
+package com.trackme.webgis.core.annotation;
 
 import java.lang.annotation.*;
 

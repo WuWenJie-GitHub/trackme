@@ -1,14 +1,12 @@
 package com.trackme.webgis.controller;
 
-import java.util.Arrays;
 import java.util.Map;
 
+import com.trackme.webgis.core.annotation.Log;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.service.UserinfoService;
@@ -24,6 +22,7 @@ import com.trackme.common.utils.R;
  * @email ${email}
  * @date 2020-10-13 10:38:06
  */
+@Api("用户管理")
 @RestController
 @RequestMapping("webgis/userinfo")
 public class UserinfoController {
@@ -34,9 +33,11 @@ public class UserinfoController {
      * 列表
      */
     @RequestMapping("/list")
+    @ApiOperation("用户列表")
+    @Log("用户列表")
     public R list(@RequestParam Map<String, Object> params){
-
-        return R.ok().put("page", null);
+        PageUtils page = userinfoService.queryPage(params);
+        return R.ok().put("page", page);
     }
 
 
@@ -76,4 +77,10 @@ public class UserinfoController {
         return R.ok();
     }
 
+    @GetMapping("/state")
+//    @Log("角色列表")
+    public R state(){
+        Map<String,Object> option = userinfoService.getUserStateOption();
+        return R.ok().put("option",option);
+    }
 }

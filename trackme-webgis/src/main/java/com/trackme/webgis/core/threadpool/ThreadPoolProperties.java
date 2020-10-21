@@ -1,4 +1,4 @@
-package com.trackme.common.threadpool;
+package com.trackme.webgis.core.threadpool;
 
 import lombok.Getter;
 import lombok.Setter;
