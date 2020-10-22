@@ -1,17 +1,12 @@
 package com.trackme.webgis.service.impl;
 
 import com.trackme.common.constant.Constant;
+import com.trackme.common.jwt.JwtHelper;
 import com.trackme.common.utils.R;
-import com.trackme.common.vo.MapToolMenuVo;
-import com.trackme.common.vo.MenuVo;
-import com.trackme.common.vo.TerminalCommandMenuVo;
-import com.trackme.common.vo.WebMenuVo;
-import com.trackme.webgis.entity.RolefuncEntity;
-import com.trackme.webgis.entity.UserinfoEntity;
-import com.trackme.webgis.entity.UserroleEntity;
-import com.trackme.webgis.service.LoginService;
-import com.trackme.webgis.service.RolefuncService;
-import com.trackme.webgis.service.UserroleService;
+import com.trackme.common.vo.*;
+import com.trackme.webgis.entity.*;
+import com.trackme.webgis.service.*;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +23,6 @@ import com.trackme.common.utils.PageUtils;
 import com.trackme.common.utils.Query;
 
 import com.trackme.webgis.mapper.FunctionmodelMapper;
-import com.trackme.webgis.entity.FunctionmodelEntity;
-import com.trackme.webgis.service.FunctionmodelService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,9 +39,12 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
     @Autowired
     LoginService loginService;
 
+    @Autowired
+    EnclosureService enclosureService;
+
     @Override
     public List<FunctionmodelEntity> getFuncModeByUserID(Integer userid) {
-        List<UserroleEntity> userRoleList = userroleService.list(new QueryWrapper<UserroleEntity>().eq("userId", userid));
+        List<UserroleEntity> userRoleList = userroleService.list(new QueryWrapper<UserroleEntity>().eq("userId", userid).orderByDesc("funcId"));
 
         List<Integer> roleIds = userRoleList!=null&&userRoleList.size()>0 ? userRoleList.stream().map((userRole) -> {
             return userRole.getRoleid();
@@ -71,9 +67,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
     @Override
     public List<MapToolMenuVo> getMapToolMenu(List<FunctionmodelEntity> funcModes) {
 
-        List<MapToolMenuVo> funcName = funcModes.stream().sorted((func1,func2) -> {
-            return (func1.getMenusort() == null ? 0 : func1.getMenusort()) - (func2.getMenusort() == null ? 0 : func2.getMenusort());
-        }).filter(funcMode ->
+        List<MapToolMenuVo> funcName = funcModes.stream().filter(funcMode ->
             funcMode.getParentid() == Constant.MAP_TOOL_MENU && funcMode.getDeleted() == 0
         ).map(funcMode -> {
             MapToolMenuVo menuVo = new MapToolMenuVo();
@@ -111,9 +105,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
             HashMap<String, Object> map = new HashMap<>();
             map.put("url", topFuncMode.getUrl());
             menuVo.setAttributes(map);
-            List<WebMenuVo> childrenMenu = funcModes.stream().sorted((func1,func2) -> {
-                return (func1.getMenusort() == null ? 0 : func1.getMenusort()) - (func2.getMenusort() == null ? 0 : func2.getMenusort());
-            }).filter(func ->
+            List<WebMenuVo> childrenMenu = funcModes.stream().filter(func ->
                     topFuncMode.getFuncid().equals(func.getParentid()) && func.getDeleted() == 0
             ).map(func -> {
                 WebMenuVo menuVo1 = new WebMenuVo();
@@ -144,9 +136,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
     public List<TerminalCommandMenuVo> getTerminalCommandMenu(List<FunctionmodelEntity> funcModes) {
         List<TerminalCommandMenuVo> terminalCommandMenuVo = funcModes.stream().filter(funcMode ->
                 funcMode.getParentid() == Constant.TERMINAL_COMMAND_MENU && funcMode.getDeleted() == 0
-        ).sorted((func1,func2) -> {
-            return (func1.getMenusort() == null ? 0 : func1.getMenusort()) - (func2.getMenusort() == null ? 0 : func2.getMenusort());
-        }).map(funcMode -> {
+        ).map(funcMode -> {
             TerminalCommandMenuVo menuVo = new TerminalCommandMenuVo();
             menuVo.setText(funcMode.getDescr());
             menuVo.setIcon(funcMode.getIcon());
@@ -164,17 +154,21 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
     }
 
     /**
-     * 根据用户权限，获取地图工具栏菜单\系统顶部的主菜单\终端命令菜单
+     * 根据用户权限，获取地图工具栏菜单\系统顶部的主菜单\终端命令菜单\部门列表\地图区域列表
      */
     @Override
     public R getAllMenu(HttpServletRequest request) {
-        R loginInfo = loginService.getLoginInfo(request);
+        String token = loginService.getRequestToken(request);
+        Claims claims = JwtHelper.parseJWT(token);
+        R loginInfo = loginService.getLoginInfo((String)claims.get("userId"));
 
         List<MapToolMenuVo> mapToolMenu = (List<MapToolMenuVo>) loginInfo.get("mapToolMenu");
         List<WebMenuVo> webMenu = (List<WebMenuVo>) loginInfo.get("webMenu");
         List<TerminalCommandMenuVo> terminalCommandMenu = (List<TerminalCommandMenuVo>) loginInfo.get("terminalCommandMenu");
+        List<DepartmentEntity> depList = (List<DepartmentEntity>) loginInfo.get("deps");
+        List<MapEnclosureTreeVo> enclosureTree = (List<MapEnclosureTreeVo>) loginInfo.get("enclosureTree");
 
-        return R.ok().put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu);
+        return R.ok().put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu).put("deps",depList).put("enclosureTree",enclosureTree);
     }
 
 
@@ -182,9 +176,11 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
         if (funcModes!=null && funcModes.size()>0) {
             funcModes.stream().filter(funcMode ->
                     funcMode.getFuncid() != Constant.TERMINAL_COMMAND_MENU && funcMode.getDeleted() == 0 && func.getParentid().equals(funcMode.getFuncid())
-            ).sorted((func1,func2) -> {
-                return (func1.getMenusort() == null ? 0 : func1.getMenusort()) - (func2.getMenusort() == null ? 0 : func2.getMenusort());
-            }).map(funcMode -> {
+            )
+//                    .sorted((func1,func2) -> {
+//                return (func1.getMenusort() == null ? 0 : func1.getMenusort()) - (func2.getMenusort() == null ? 0 : func2.getMenusort());
+//            })
+                    .map(funcMode -> {
                 TerminalCommandMenuVo menuVo1 = new TerminalCommandMenuVo();
                 menuVo1.setText(funcMode.getDescr());
                 menuVo1.setIcon(funcMode.getIcon());

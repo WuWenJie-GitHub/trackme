@@ -3,12 +3,9 @@ package com.trackme.webgis.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.trackme.webgis.core.annotation.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.trackme.webgis.entity.DepartmentEntity;
 import com.trackme.webgis.service.DepartmentService;
@@ -75,5 +72,6 @@ public class DepartmentController {
 
         return R.ok();
     }
+
 
 }

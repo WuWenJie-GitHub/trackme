@@ -18,7 +18,9 @@ public interface LoginService {
 
     BufferedImage getCaptcha(HttpServletResponse response, String uuid);
 
-    R getLoginInfo(HttpServletRequest request);
+    R getLoginInfo(String userid);
 
     R loginOut(HttpServletResponse response);
+
+    String getRequestToken(HttpServletRequest request);
 }

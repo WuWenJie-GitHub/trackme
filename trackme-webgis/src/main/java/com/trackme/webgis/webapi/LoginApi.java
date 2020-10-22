@@ -1,6 +1,7 @@
 package com.trackme.webgis.webapi;
 
 import com.trackme.common.form.LoginForm;
+import com.trackme.common.jwt.JwtHelper;
 import com.trackme.common.utils.R;
 import com.trackme.common.vo.MapToolMenuVo;
 import com.trackme.common.vo.TerminalCommandMenuVo;
@@ -10,6 +11,7 @@ import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.service.FunctionmodelService;
 import com.trackme.webgis.service.LoginService;
+import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -74,7 +76,9 @@ public class LoginApi {
     @Log("获取用户信息")
     @ApiOperation(value = "获取用户信息", notes = "获取用户信息")
     public R getLoginInfo(HttpServletRequest request){
-        return loginService.getLoginInfo(request);
+        String token = loginService.getRequestToken(request);
+        Claims claims = JwtHelper.parseJWT(token);
+        return loginService.getLoginInfo((String)claims.get("userId"));
     }
 
     @GetMapping("/loginOut")
@@ -86,52 +90,54 @@ public class LoginApi {
 
 
     @GetMapping("/getAllMenu")
+    @Log("获取用户信息|地图工具栏菜单|系统顶部的主菜单|终端命令菜单|部门列表|地图区域列表")
+    @ApiOperation(value = "获取用户信息|地图工具栏菜单|系统顶部的主菜单|终端命令菜单|部门列表|地图区域列表")
     public R getAllMenu(HttpServletRequest request){
        return functionmodelService.getAllMenu(request);
     }
 
-    /**
-     * 根据用户权限，获取地图工具栏菜单
-     */
-    @GetMapping("/getMapToolMenu")
-    public R getMapToolMenu(HttpServletRequest request){
-        R loginInfo = loginService.getLoginInfo(request);
-
-        UserinfoEntity user = (UserinfoEntity) loginInfo.get("user");
-        List<FunctionmodelEntity> funcModes = (List<FunctionmodelEntity>) loginInfo.get("func");
-
-        List<MapToolMenuVo> mapToolMenu = functionmodelService.getMapToolMenu(funcModes);
-        return R.ok().put("mapToolMenu",mapToolMenu);
-    }
-
-    /**
-     * 根据用户权限，获取系统顶部的主菜单
-     */
-    @GetMapping("/getWebMenu")
-    public R getWebMenu(HttpServletRequest request){
-        R loginInfo = loginService.getLoginInfo(request);
-
-        UserinfoEntity user = (UserinfoEntity) loginInfo.get("user");
-        List<FunctionmodelEntity> funcModes = (List<FunctionmodelEntity>) loginInfo.get("func");
-
-        List<WebMenuVo> webMenu = functionmodelService.getWebMenu(funcModes);
-        System.out.println(webMenu);
-        return R.ok().put("webMenu",webMenu);
-    }
-
-    /**
-     * 根据用户权限，获取终端命令菜单
-     */
-    @GetMapping("/getTerminalCommandMenu")
-    public R getTerminalCommandMenu(HttpServletRequest request){
-        R loginInfo = loginService.getLoginInfo(request);
-
-        UserinfoEntity user = (UserinfoEntity) loginInfo.get("user");
-        List<FunctionmodelEntity> funcModes = (List<FunctionmodelEntity>) loginInfo.get("func");
-
-        List<TerminalCommandMenuVo> terminalCommandMenu = functionmodelService.getTerminalCommandMenu(funcModes);
-        return R.ok().put("terminalCommandMenu",terminalCommandMenu);
-    }
-
+//    /**
+//     * 根据用户权限，获取地图工具栏菜单
+//     */
+//    @GetMapping("/getMapToolMenu")
+//    public R getMapToolMenu(HttpServletRequest request){
+//        R loginInfo = loginService.getLoginInfo(request);
+//
+//        UserinfoEntity user = (UserinfoEntity) loginInfo.get("user");
+//        List<FunctionmodelEntity> funcModes = (List<FunctionmodelEntity>) loginInfo.get("func");
+//
+//        List<MapToolMenuVo> mapToolMenu = functionmodelService.getMapToolMenu(funcModes);
+//        return R.ok().put("mapToolMenu",mapToolMenu);
+//    }
+//
+//    /**
+//     * 根据用户权限，获取系统顶部的主菜单
+//     */
+//    @GetMapping("/getWebMenu")
+//    public R getWebMenu(HttpServletRequest request){
+//        R loginInfo = loginService.getLoginInfo(request);
+//
+//        UserinfoEntity user = (UserinfoEntity) loginInfo.get("user");
+//        List<FunctionmodelEntity> funcModes = (List<FunctionmodelEntity>) loginInfo.get("func");
+//
+//        List<WebMenuVo> webMenu = functionmodelService.getWebMenu(funcModes);
+//        System.out.println(webMenu);
+//        return R.ok().put("webMenu",webMenu);
+//    }
+//
+//    /**
+//     * 根据用户权限，获取终端命令菜单
+//     */
+//    @GetMapping("/getTerminalCommandMenu")
+//    public R getTerminalCommandMenu(HttpServletRequest request){
+//        R loginInfo = loginService.getLoginInfo(request);
+//
+//        UserinfoEntity user = (UserinfoEntity) loginInfo.get("user");
+//        List<FunctionmodelEntity> funcModes = (List<FunctionmodelEntity>) loginInfo.get("func");
+//
+//        List<TerminalCommandMenuVo> terminalCommandMenu = functionmodelService.getTerminalCommandMenu(funcModes);
+//        return R.ok().put("terminalCommandMenu",terminalCommandMenu);
+//    }
+//
 
 }

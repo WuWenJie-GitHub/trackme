@@ -153,4 +153,37 @@ public class Constant {
         }
     }
 
+    /**
+     * 地图电子围栏
+     * */
+    public enum MapEnclosure {
+
+        /**
+         * 多边形电子围栏
+         */
+         POLYGON("polygon"),
+        /**
+         * 矩形电子围栏
+         */
+         RECT("rect"),
+        /**
+         * 圆形电子围栏
+         */
+         CIRCLE("circle"),
+        /**
+         * 路线
+         */
+         ROUTE("route"),
+        /**
+         * 地图标注
+         */
+         MARKER("marker");
+
+        private String value;
+
+        MapEnclosure(String value) {
+            this.value = value;
+        }
+        public String getValue() {return value;}
+    }
 }

@@ -8,9 +8,11 @@ import com.trackme.common.jwt.AESSecretUtil;
 import com.trackme.common.jwt.JwtHelper;
 import com.trackme.common.constant.Constant;
 import com.trackme.common.utils.R;
+import com.trackme.common.vo.MapEnclosureTreeVo;
 import com.trackme.common.vo.MapToolMenuVo;
 import com.trackme.common.vo.TerminalCommandMenuVo;
 import com.trackme.common.vo.WebMenuVo;
+import com.trackme.webgis.entity.DepartmentEntity;
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.service.*;
@@ -18,6 +20,7 @@ import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +45,9 @@ public class LoginServiceImpl implements LoginService {
     RedisTemplate redisTemplate;
 
     @Autowired
+    DepartmentService departmentService;
+
+    @Autowired
     RoleService roleService;
 
     @Autowired
@@ -53,6 +59,9 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     FunctionmodelService functionmodelService;
 
+    @Autowired
+    EnclosureService enclosureService;
+
     @Override
     public R login(LoginForm loginForm,HttpServletRequest request) {
         String uuid = loginForm.getUuid();
@@ -61,19 +70,21 @@ public class LoginServiceImpl implements LoginService {
         String imageCode = loginForm.getImageCode();
 
         String key = Constant.IMAGECODE + uuid;
+        if (StringUtils.isEmpty(imageCode)) {
+            return R.error("验证码不能为空");
+        }
+        if (!redisTemplate.hasKey(key)) {
+            return R.error("验证已过期");
+        }
         String redisRandomCode = redisTemplate.opsForValue().get(key).toString();
-
+        if (!imageCode.equals(redisRandomCode)) {
+            return R.error("验证码不正确");
+        }
         if (StringUtils.isEmpty(username)) {
             return R.error("用户名不能为空");
         }
         if (password == null) {
             return R.error("密码不能为空");
-        }
-        if (StringUtils.isEmpty(imageCode)) {
-            return R.error("验证码不能为空");
-        }
-        if (!imageCode.equals(redisRandomCode)) {
-            return R.error("验证码不正确");
         }
 
         try {
@@ -164,15 +175,16 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
+     * 根据请求头里的token id（加过密的）值
      * 获取用户信息\用户权限\地图工具栏菜单\系统顶部的主菜单\终端命令菜单
      */
     @Override
-    public R getLoginInfo(HttpServletRequest request) {
-        String token = getRequestToken(request);
-        Claims claims = JwtHelper.parseJWT(token);
-        //解密客户编号
-        String decryptUserId = AESSecretUtil.decryptToStr((String)claims.get("userId"), SecretConstant.DATAKEY);
+    @Cacheable(value = "loginUser",key = "#root.args[0]")
+    public R getLoginInfo(String userid) {
+
+        String decryptUserId = AESSecretUtil.decryptToStr(userid, SecretConstant.DATAKEY);//解密客户编号
         int id = Integer.parseInt(decryptUserId);
+
         //用户信息
         UserinfoEntity user = userinfoService.getById(id);
 
@@ -180,7 +192,7 @@ public class LoginServiceImpl implements LoginService {
         List<FunctionmodelEntity> funcModes = null;
         if (user.getUserflag() == Constant.USER_FLAG_SUPER_ADMIN ) {
             //超级用户，将加所有权限,可以分配所有管理部门
-            funcModes = functionmodelService.list(null);
+            funcModes = functionmodelService.list(new QueryWrapper<FunctionmodelEntity>().orderByDesc("funcId"));
         } else {
             //根据用户角色获取权限
             funcModes = functionmodelService.getFuncModeByUserID(user.getUserid());
@@ -191,7 +203,13 @@ public class LoginServiceImpl implements LoginService {
         List<WebMenuVo> webMenu = functionmodelService.getWebMenu(funcModes);
         List<TerminalCommandMenuVo> terminalCommandMenu = functionmodelService.getTerminalCommandMenu(funcModes);
 
-        return R.ok().put("user",user).put("func",funcModes).put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu);
+        //部门列表
+        List<DepartmentEntity> deps = departmentService.getUserDeps(user.getUserid());
+
+        //地图区域列表
+        List<MapEnclosureTreeVo> enclosureTree = enclosureService.getEnclosureTree();
+
+        return R.ok().put("user",user).put("enclosureTree",enclosureTree).put("func",funcModes).put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu).put("deps",deps);
     }
 
     @Override
@@ -215,7 +233,7 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 获取请求的token
      */
-    private String getRequestToken(HttpServletRequest httpRequest){
+    public String getRequestToken(HttpServletRequest httpRequest){
         //从header中获取token
         String token = httpRequest.getHeader("token");
 

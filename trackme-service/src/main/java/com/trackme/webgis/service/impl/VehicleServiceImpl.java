@@ -1,7 +1,13 @@
 package com.trackme.webgis.service.impl;
 
+import com.trackme.common.utils.R;
+import com.trackme.common.vo.VehicleTreeVo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -17,4 +23,15 @@ import com.trackme.webgis.service.VehicleService;
 public class VehicleServiceImpl extends ServiceImpl<VehicleMapper, VehicleEntity> implements VehicleService {
 
 
+    @Override
+    public R getVehicleTree(int depid) {
+        List<Map<String,Object>> tree = baseMapper.selectVehicleTree(depid);
+        List<VehicleTreeVo> vos = tree.stream().map(tr -> {
+            VehicleTreeVo vo = new VehicleTreeVo();
+            vo.setId(tr.get("vehicleId").toString());
+            vo.setName(tr.get("plateNo").toString());
+            return vo;
+        }).collect(Collectors.toList());
+        return R.ok().put("vehicleTree",vos);
+    }
 }

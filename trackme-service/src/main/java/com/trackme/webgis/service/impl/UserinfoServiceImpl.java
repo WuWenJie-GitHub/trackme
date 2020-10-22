@@ -1,5 +1,6 @@
 package com.trackme.webgis.service.impl;
 
+import com.trackme.webgis.entity.DepartmentEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +36,5 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, UserinfoEnt
     public Map<String, Object> getUserStateOption() {
         return null;
     }
+
 }

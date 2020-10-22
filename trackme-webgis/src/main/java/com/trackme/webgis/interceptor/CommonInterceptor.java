@@ -34,7 +34,6 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
         if (url.contains("login") || url.contains("imageCode") || url.contains("swagger") || url.contains("error")) {
             return true;
         }
-        System.out.println(url);
         String jwt = request.getHeader("token");
         //判断jwt是否有效
         if(!"null".equals(jwt) && jwt != null && !"".equals(jwt)){

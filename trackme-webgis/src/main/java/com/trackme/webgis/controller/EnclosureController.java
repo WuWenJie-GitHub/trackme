@@ -3,12 +3,11 @@ package com.trackme.webgis.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.trackme.webgis.core.annotation.Log;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.trackme.webgis.entity.EnclosureEntity;
 import com.trackme.webgis.service.EnclosureService;
@@ -24,6 +23,7 @@ import com.trackme.common.utils.R;
  * @email ${email}
  * @date 2020-10-13 10:38:06
  */
+@Api("电子围栏管理")
 @RestController
 @RequestMapping("webgis/enclosure")
 public class EnclosureController {

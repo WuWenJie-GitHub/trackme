@@ -3,6 +3,10 @@ package com.trackme.webgis.mapper;
 import com.trackme.webgis.entity.VehicleEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -13,5 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface VehicleMapper extends BaseMapper<VehicleEntity> {
-	
+
+    List<Map<String,Object>> selectVehicleTree(@Param("depid") int depid);
 }

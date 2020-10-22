@@ -3,6 +3,9 @@ package com.trackme.webgis.mapper;
 import com.trackme.webgis.entity.DepartmentEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface DepartmentMapper extends BaseMapper<DepartmentEntity> {
-	
+
+    List<DepartmentEntity> selectUserDeps(@Param("userid") Integer userid);
 }

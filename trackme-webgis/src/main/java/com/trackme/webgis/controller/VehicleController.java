@@ -3,12 +3,11 @@ package com.trackme.webgis.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.trackme.webgis.core.annotation.Log;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.trackme.webgis.entity.VehicleEntity;
 import com.trackme.webgis.service.VehicleService;
@@ -24,6 +23,7 @@ import com.trackme.common.utils.R;
  * @email ${email}
  * @date 2020-10-13 10:38:06
  */
+@Api("车辆信息管理")
 @RestController
 @RequestMapping("webgis/vehicle")
 public class VehicleController {
@@ -76,4 +76,10 @@ public class VehicleController {
         return R.ok();
     }
 
+    @GetMapping("/vehicleTree/{depid}")
+    @Log("获取部门下面的车辆树")
+    @ApiOperation("获取部门下面的车辆树")
+    public R getVehicleTree(@PathVariable("depid") int depid) {
+        return vehicleService.getVehicleTree(depid);
+    }
 }
