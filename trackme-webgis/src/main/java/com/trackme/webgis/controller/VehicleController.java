@@ -82,4 +82,12 @@ public class VehicleController {
     public R getVehicleTree(@PathVariable("depid") int depid) {
         return vehicleService.getVehicleTree(depid);
     }
+
+    @GetMapping("/vehicleInfo/{vehicleIds}")
+    @Log("根据id[]获取车辆信息")
+    @ApiOperation("根据id[]获取车辆信息")
+    public R getVehicleInfos(@PathVariable("vehicleIds") Integer[] vehicleIds) {
+        return vehicleService.getVehicleInfos(vehicleIds);
+    }
+
 }

@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -110,7 +111,9 @@ public class LoginServiceImpl implements LoginService {
                 //根据用户角色获取权限
                 funcModes = functionmodelService.getFuncModeByUserID(user.getUserid());
             }
-
+            funcModes.stream().sorted((func1,func2) -> {
+                return (func1.getFuncid() == null ? 0 : func1.getFuncid()) - (func2.getFuncid() == null ? 0 : func2.getFuncid());
+            }).forEach(System.out::println);
 
             //根据用户权限，获取地图工具栏菜单
             List<MapToolMenuVo> mapToolMenu = functionmodelService.getMapToolMenu(funcModes);
@@ -209,7 +212,13 @@ public class LoginServiceImpl implements LoginService {
         //地图区域列表
         List<MapEnclosureTreeVo> enclosureTree = enclosureService.getEnclosureTree();
 
-        return R.ok().put("user",user).put("enclosureTree",enclosureTree).put("func",funcModes).put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu).put("deps",deps);
+        return  R.ok().put("user", user).
+                put("enclosureTree", enclosureTree).
+                put("func", funcModes).
+                put("mapToolMenu", mapToolMenu).
+                put("terminalCommandMenu", terminalCommandMenu).
+                put("webMenu", webMenu).
+                put("deps", deps);
     }
 
     @Override

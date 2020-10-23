@@ -2,6 +2,7 @@ package com.trackme.webgis.service.impl;
 
 import com.trackme.common.utils.R;
 import com.trackme.common.vo.VehicleTreeVo;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class VehicleServiceImpl extends ServiceImpl<VehicleMapper, VehicleEntity
 
 
     @Override
+    @Cacheable(value = "depVehTree", key = "#root.args[0]")
     public R getVehicleTree(int depid) {
         List<Map<String,Object>> tree = baseMapper.selectVehicleTree(depid);
         List<VehicleTreeVo> vos = tree.stream().map(tr -> {
@@ -33,5 +35,11 @@ public class VehicleServiceImpl extends ServiceImpl<VehicleMapper, VehicleEntity
             return vo;
         }).collect(Collectors.toList());
         return R.ok().put("vehicleTree",vos);
+    }
+
+    @Override
+    public R getVehicleInfos(Integer[] vehicleIds) {
+        List<Map<String,Object>> vehicleInfos =   baseMapper.selectVehicleInfos(vehicleIds);
+        return R.ok().put("vehicleInfos",vehicleInfos);
     }
 }

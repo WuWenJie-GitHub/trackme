@@ -81,6 +81,7 @@ public class JwtHelper {
         if (SecretConstant.EXPIRESSECOND >= 0) {
             long expMillis = nowTimeMillis + SecretConstant.EXPIRESSECOND;
             Date expDate = new Date(expMillis);
+            System.out.println(expMillis +"---------"+expDate);
             builder.setExpiration(expDate).setNotBefore(now);
         }
         return builder.compact();
@@ -145,7 +146,7 @@ public class JwtHelper {
         String decryptUserId = AESSecretUtil.decryptToStr((String)claims.get("userId"), SecretConstant.DATAKEY);
 
         System.out.println(claims);
-       System.out.println(validateLogin(jsonWebKey));
+//       System.out.println(validateLogin(jsonWebKey));
 
     }
 

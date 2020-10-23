@@ -19,4 +19,6 @@ import java.util.Map;
 public interface VehicleMapper extends BaseMapper<VehicleEntity> {
 
     List<Map<String,Object>> selectVehicleTree(@Param("depid") int depid);
+
+    List<Map<String,Object>> selectVehicleInfos(@Param("vehicleIds") Integer[] vehicleIds);
 }

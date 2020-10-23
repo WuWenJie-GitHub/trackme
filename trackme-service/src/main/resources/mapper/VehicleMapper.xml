@@ -71,5 +71,18 @@
         select vehicleId ,plateNo ,status from vehicle where depId = #{depid}
     </select>
 
+    <select id="selectVehicleInfos" resultType="java.util.Map">
+        SELECT
+            v.vehicleId,g.velocity,g.status,g.mileage,g.online,v.depName,v.plateNo,v.simNo,g.location,g.longitude,g.latitude,g.sendTime
+        FROM
+            gpsrealdata g
+        INNER JOIN vehicle v ON g.vehicleId = v.vehicleId
+        WHERE v.vehicleId in
+        <foreach collection="vehicleIds" item="id" index="index"
+                 open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
 
 </mapper>

@@ -44,7 +44,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
 
     @Override
     public List<FunctionmodelEntity> getFuncModeByUserID(Integer userid) {
-        List<UserroleEntity> userRoleList = userroleService.list(new QueryWrapper<UserroleEntity>().eq("userId", userid).orderByDesc("funcId"));
+        List<UserroleEntity> userRoleList = userroleService.list(new QueryWrapper<UserroleEntity>().eq("userId", userid));
 
         List<Integer> roleIds = userRoleList!=null&&userRoleList.size()>0 ? userRoleList.stream().map((userRole) -> {
             return userRole.getRoleid();
@@ -160,7 +160,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
     public R getAllMenu(HttpServletRequest request) {
         String token = loginService.getRequestToken(request);
         Claims claims = JwtHelper.parseJWT(token);
-        R loginInfo = loginService.getLoginInfo((String)claims.get("userId"));
+        R loginInfo = loginService.getLoginInfo((String) claims.get("userId"));
 
         List<MapToolMenuVo> mapToolMenu = (List<MapToolMenuVo>) loginInfo.get("mapToolMenu");
         List<WebMenuVo> webMenu = (List<WebMenuVo>) loginInfo.get("webMenu");
@@ -176,11 +176,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
         if (funcModes!=null && funcModes.size()>0) {
             funcModes.stream().filter(funcMode ->
                     funcMode.getFuncid() != Constant.TERMINAL_COMMAND_MENU && funcMode.getDeleted() == 0 && func.getParentid().equals(funcMode.getFuncid())
-            )
-//                    .sorted((func1,func2) -> {
-//                return (func1.getMenusort() == null ? 0 : func1.getMenusort()) - (func2.getMenusort() == null ? 0 : func2.getMenusort());
-//            })
-                    .map(funcMode -> {
+            ).map(funcMode -> {
                 TerminalCommandMenuVo menuVo1 = new TerminalCommandMenuVo();
                 menuVo1.setText(funcMode.getDescr());
                 menuVo1.setIcon(funcMode.getIcon());

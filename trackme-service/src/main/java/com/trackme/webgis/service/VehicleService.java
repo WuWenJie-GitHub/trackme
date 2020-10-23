@@ -17,6 +17,8 @@ import java.util.Map;
 public interface VehicleService extends IService<VehicleEntity> {
 
     R getVehicleTree(int depid);
+
+    R getVehicleInfos(Integer[] vehicleIds);
 }
 
 

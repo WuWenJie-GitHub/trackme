@@ -11,6 +11,7 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -51,7 +52,7 @@ public class RedisConfig {
                         // 不缓存null
                         .disableCachingNullValues()
                         // 缓存数据保存2小时
-                        .entryTtl(Duration.ofHours(24));
+                        .entryTtl(Duration.ofHours(2));
         RedisCacheManager redisCacheManager =
                 RedisCacheManager.RedisCacheManagerBuilder
                         // Redis 连接工厂
@@ -79,11 +80,13 @@ public class RedisConfig {
         // 指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会报异常
 //        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
 //        jacksonSeial.setObjectMapper(om);
-        StringRedisSerializer stringSerial = new StringRedisSerializer();
+//        StringRedisSerializer stringSerial = new StringRedisSerializer();
         // redis key 序列化方式使用stringSerial
         template.setKeySerializer(jacksonSeial);
+
         // redis value 序列化方式使用jackson
-        template.setValueSerializer(jacksonSeial);
+//        template.setValueSerializer(jacksonSeial);
+        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
 //        template.setValueSerializer(stringSerial);
         // redis hash key 序列化方式使用stringSerial
         template.setHashKeySerializer(jacksonSeial);
