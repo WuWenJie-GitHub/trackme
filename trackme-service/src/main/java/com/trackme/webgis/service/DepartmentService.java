@@ -5,6 +5,7 @@ import com.trackme.common.utils.PageUtils;
 import com.trackme.common.utils.R;
 import com.trackme.webgis.entity.DepartmentEntity;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public interface DepartmentService extends IService<DepartmentEntity> {
     List<DepartmentEntity> getUserDeps(Integer userid);
 
 
+    PageUtils userDepPages(Map<String,Object> params, HttpServletRequest request);
 }
 
 

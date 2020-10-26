@@ -18,4 +18,6 @@ import java.util.List;
 public interface DepartmentMapper extends BaseMapper<DepartmentEntity> {
 
     List<DepartmentEntity> selectUserDeps(@Param("userid") Integer userid);
+
+    List<DepartmentEntity> selectUserDepPages(@Param("page") int page, @Param("limit") int limit, @Param("userid") Integer userid);
 }

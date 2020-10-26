@@ -34,5 +34,16 @@
         where ui.userId = #{userid}
     </select>
 
+    <select id="selectUserDepPages" resultType="com.trackme.webgis.entity.DepartmentEntity">
+       SELECT
+            *
+        FROM
+            userdepartment ud
+        INNER JOIN department d ON ud.depId = d.depId
+        INNER JOIN userinfo ui on ud.userId = ui.userId
+        where ui.userId = #{userid}
+        limit #{page},#{limit}
+    </select>
+
 
 </mapper>

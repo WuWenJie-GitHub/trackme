@@ -2,6 +2,7 @@ package com.trackme.webgis.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.trackme.common.jwt.JwtHelper;
+import com.trackme.common.utils.CookieUtil;
 import com.trackme.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -46,9 +47,9 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
                 //校验客户端信息
                 String userAgent = request.getHeader("User-Agent");
                 if (userAgent.equals(jsonObject.getString("userAgent"))) {
-                    //获取刷新后的jwt值，设置到响应头中
+                    //获取刷新后的jwt值，设置到响应头中\ cookie中
+                    CookieUtil.setCookieVal("token",jsonObject.getString("freshToken"),response,request.getServerName());
                     response.setHeader("token", jsonObject.getString("freshToken"));
-                    //todo 是否要写入redis中
                     return true;
                 }else{
                     log.warn("[登录校验拦截器]-客户端浏览器信息与JWT中存的浏览器信息不一致，重新登录。当前浏览器信息:{}", userAgent);

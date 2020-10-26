@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import com.trackme.webgis.core.annotation.Log;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import com.trackme.webgis.service.DepartmentService;
 import com.trackme.common.utils.PageUtils;
 import com.trackme.common.utils.R;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -28,12 +30,14 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     /**
-     * 列表
+     * 根据当前登录用户获取部门店列表
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-
-        return R.ok().put("page", null);
+    @Log("根据当前登录用户获取部门店列表")
+    @ApiOperation("根据当前登录用户获取部门店列表")
+    @RequestMapping("/userDepPages")
+    public R userDepList(@RequestParam Map<String, Object> params, HttpServletRequest request){
+        PageUtils page = departmentService.userDepPages(params,request);
+        return R.ok().put("page", page);
     }
 
 
@@ -72,6 +76,7 @@ public class DepartmentController {
 
         return R.ok();
     }
+
 
 
 }

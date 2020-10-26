@@ -32,6 +32,7 @@ public class VehicleServiceImpl extends ServiceImpl<VehicleMapper, VehicleEntity
             VehicleTreeVo vo = new VehicleTreeVo();
             vo.setId(tr.get("vehicleId").toString());
             vo.setName(tr.get("plateNo").toString());
+            vo.setOnline(tr.get("online").toString());
             return vo;
         }).collect(Collectors.toList());
         return R.ok().put("vehicleTree",vos);

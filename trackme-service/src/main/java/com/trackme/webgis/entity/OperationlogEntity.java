@@ -2,6 +2,7 @@ package com.trackme.webgis.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -41,6 +42,7 @@ public class OperationlogEntity implements Serializable {
 	/**
 	 * $column.comments
 	 */
+	@TableLogic
 	private Integer deleted;
 	/**
 	 * $column.comments

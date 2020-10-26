@@ -68,15 +68,22 @@
     </resultMap>
 
     <select id="selectVehicleTree" resultType="java.util.Map">
-        select vehicleId ,plateNo ,status from vehicle where depId = #{depid}
+        SELECT
+            v.vehicleId ,v.plateNo,g.online
+        FROM
+            vehicle v
+        INNER JOIN gpsrealdata g ON v.vehicleId = g.vehicleId
+        WHERE
+            v.depId = #{depid}
     </select>
 
     <select id="selectVehicleInfos" resultType="java.util.Map">
         SELECT
-            v.vehicleId,g.velocity,g.status,g.mileage,g.online,v.depName,v.plateNo,v.simNo,g.location,g.longitude,g.latitude,g.sendTime
+            v.vehicleId,g.velocity,g.status,g.mileage,g.online,d.depId,d.name depName,v.plateNo,v.simNo,g.location,g.longitude,g.latitude,g.sendTime
         FROM
             gpsrealdata g
         INNER JOIN vehicle v ON g.vehicleId = v.vehicleId
+        INNER JOIN department d ON v.depId = d.depId
         WHERE v.vehicleId in
         <foreach collection="vehicleIds" item="id" index="index"
                  open="(" separator="," close=")">

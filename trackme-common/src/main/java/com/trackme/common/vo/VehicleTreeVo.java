@@ -11,6 +11,6 @@ import java.util.List;
  */
 @Data
 public class VehicleTreeVo extends ElementTreeVo {
-    private String online = "1";
+    private String online = "0";
     private List<VehicleTreeVo> children;
 }

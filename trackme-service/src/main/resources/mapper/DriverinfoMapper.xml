@@ -50,6 +50,26 @@
         <result property="tenantid" column="tenantId"/>
         <result property="maindriver" column="mainDriver"/>
     </resultMap>
+    <select id="selectUserDriPages" resultType="java.util.Map">
+        SELECT
+            d.driverCode,d.driverName,d.identityCard,d.mobilePhone,d.monitorOrg,d.licenseAgency,v.plateNo
+        FROM
+            userinfo ui
+        INNER JOIN userdepartment ud ON ui.userId = ud.userId
+        INNER JOIN vehicle v on v.depId = ud.depId
+        INNER JOIN driverinfo d ON d.vehicleId = v.vehicleId
+        where ui.userId = #{userid} limit #{page},#{limit}
+    </select>
+    <select id="selectUserDris" resultType="com.trackme.webgis.entity.DriverinfoEntity">
+        SELECT
+            d.*
+        FROM
+            userinfo ui
+        INNER JOIN userdepartment ud ON ui.userId = ud.userId
+        INNER JOIN vehicle v on v.depId = ud.depId
+        INNER JOIN driverinfo d ON d.vehicleId = v.vehicleId
+        where ui.userId = #{userid}
+    </select>
 
 
 </mapper>
