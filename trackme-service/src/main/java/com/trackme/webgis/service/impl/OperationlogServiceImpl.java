@@ -2,6 +2,7 @@ package com.trackme.webgis.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trackme.common.utils.IPUtils;
+import com.trackme.common.utils.MyStringUtils;
 import com.trackme.webgis.entity.UserinfoEntity;
 import org.springframework.stereotype.Service;
 
@@ -38,10 +39,19 @@ public class OperationlogServiceImpl extends ServiceImpl<OperationlogMapper, Ope
 
     @Override
     public PageUtils queryParams(Map<String, Object> params) {
+        QueryWrapper<OperationlogEntity> wrapper = new QueryWrapper<>();
+        if (MyStringUtils.isNotNull((String) params.get("name"))) {
+            wrapper.eq("userName",(String) params.get("name"));
+        }
+        if (MyStringUtils.isNotNull(params.get("endDate"))&&MyStringUtils.isNotNull(params.get("startDate"))) {
+            wrapper.between("createDate",new java.sql.Date(Long.parseLong(params.get("startDate").toString()) ),new java.sql.Date(Long.parseLong(params.get("endDate").toString())));
+        }
+
         IPage<OperationlogEntity> iPage = this.page(
                 new Query<OperationlogEntity>().getPage(params),
-                new QueryWrapper<OperationlogEntity>().orderByDesc("createDate")
+                wrapper.orderByDesc("createDate")
         );
+
         return new PageUtils(iPage);
     }
 }

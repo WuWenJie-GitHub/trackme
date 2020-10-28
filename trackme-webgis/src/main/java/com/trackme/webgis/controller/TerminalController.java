@@ -3,6 +3,8 @@ package com.trackme.webgis.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.trackme.webgis.core.annotation.Log;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import com.trackme.webgis.service.TerminalService;
 import com.trackme.common.utils.PageUtils;
 import com.trackme.common.utils.R;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -33,10 +36,12 @@ public class TerminalController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-
-        return R.ok().put("page", null);
+    @Log("获取当前登录用户下终端信息列表")
+    @ApiOperation("获取当前登录用户下终端信息列表")
+    @RequestMapping("/userTerPages")
+    public R userTerPages(@RequestParam Map<String, Object> params, HttpServletRequest request){
+        PageUtils pages = terminalService.getUserTerPages(params,request);
+        return R.ok().put("page", pages);
     }
 
 

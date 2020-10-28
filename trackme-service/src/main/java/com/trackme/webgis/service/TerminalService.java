@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.trackme.common.utils.PageUtils;
 import com.trackme.webgis.entity.TerminalEntity;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -15,6 +16,7 @@ import java.util.Map;
  */
 public interface TerminalService extends IService<TerminalEntity> {
 
+    PageUtils getUserTerPages(Map<String,Object> params, HttpServletRequest request);
 }
 
 

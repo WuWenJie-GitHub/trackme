@@ -1,5 +1,6 @@
 package com.trackme.webgis.service.impl;
 
+import com.trackme.common.utils.MyStringUtils;
 import com.trackme.common.vo.OptionVo;
 import org.springframework.stereotype.Service;
 
@@ -39,11 +40,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        QueryWrapper<RoleEntity> wrapper = new QueryWrapper<>();
+        if (MyStringUtils.isNotNull(params.get("roleName"))) {
+            wrapper.like("name",params.get("roleName".toString()));
+        }
         IPage<RoleEntity> page = this.page(
                 new Query<RoleEntity>().getPage(params),
-                new QueryWrapper<RoleEntity>()
+                wrapper
         );
-
         return new PageUtils(page);
     }
 }
