@@ -1,14 +1,15 @@
 package com.trackme.webgis.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.trackme.common.vo.FuncTreeVo;
+import com.trackme.common.vo.OptionVo;
+import com.trackme.webgis.core.annotation.Log;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.service.FunctionmodelService;
@@ -76,4 +77,11 @@ public class FunctionmodelController {
         return R.ok();
     }
 
+    @ApiOperation("功能菜单树对象")
+    @GetMapping("/funcTrees")
+    @Log("获取功能菜单树对象")
+    public R funcTrees() {
+        List<FuncTreeVo> funcTrees = functionmodelService.getFuncTrees();
+        return R.ok().put("funcTrees",funcTrees);
+    }
 }

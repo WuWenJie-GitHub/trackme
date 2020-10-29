@@ -23,6 +23,15 @@
         <result property="tenantid" column="tenantId"/>
         <result property="remark" column="remark"/>
     </resultMap>
+    <select id="selectRoleFunc" resultType="com.trackme.webgis.entity.FunctionmodelEntity">
+        SELECT
+            f.*
+        FROM
+            functionmodel f
+        INNER JOIN rolefunc r ON f.funcId = r.sys_func_id
+        WHERE
+            r.role_id = #{roleid}
+    </select>
 
 
 </mapper>

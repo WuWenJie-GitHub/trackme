@@ -19,14 +19,8 @@ import lombok.Data;
 public class RolefuncEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * $column.comments
-	 */
-	@TableId
 	private Integer roleId;
-	/**
-	 * $column.comments
-	 */
+
 	private Integer sysFuncId;
 
 }

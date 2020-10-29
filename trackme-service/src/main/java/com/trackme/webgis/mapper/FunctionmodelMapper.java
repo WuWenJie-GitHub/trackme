@@ -3,6 +3,9 @@ package com.trackme.webgis.mapper;
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface FunctionmodelMapper extends BaseMapper<FunctionmodelEntity> {
-	
+
+    List<FunctionmodelEntity> selectRoleFunc(@Param("roleid") Integer roleid);
 }

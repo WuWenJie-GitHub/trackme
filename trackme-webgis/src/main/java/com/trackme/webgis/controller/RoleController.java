@@ -1,9 +1,12 @@
 package com.trackme.webgis.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import com.trackme.common.vo.OptionVo;
+import com.trackme.common.vo.RoleVo;
 import com.trackme.webgis.core.annotation.Log;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,36 +49,44 @@ public class RoleController {
     /**
      * 信息
      */
+    @ApiOperation("角色信息")
+    @Log("角色信息")
     @RequestMapping("/info/{roleid}")
     public R info(@PathVariable("roleid") Integer roleid){
-
-        return R.ok().put("role", null);
+        RoleVo roleVo = roleService.getRoleInfo(roleid);
+        return R.ok().put("role", roleVo);
     }
 
     /**
      * 保存
      */
-    @RequestMapping("/save")
-    public R save(@RequestBody RoleEntity role){
-
+    @ApiOperation("保存角色信息")
+    @Log("保存角色信息")
+    @PostMapping("/save")
+    public R save(@RequestBody RoleVo roleVo){
+        roleService.saveRoleVo(roleVo);
         return R.ok();
     }
 
     /**
      * 修改
      */
-    @RequestMapping("/update")
-    public R update(@RequestBody RoleEntity role){
-
+    @ApiOperation("修改角色信息")
+    @Log("修改角色信息")
+    @PostMapping("/update")
+    public R update(@RequestBody RoleVo roleVo){
+        roleService.updateRoleVo(roleVo);
         return R.ok();
     }
 
     /**
      * 删除
      */
+    @ApiOperation("删除角色信息")
+    @Log("删除角色信息")
     @RequestMapping("/delete")
     public R delete(@RequestBody Integer[] roleids){
-
+        roleService.removeByIds(Arrays.asList(roleids));
         return R.ok();
     }
 

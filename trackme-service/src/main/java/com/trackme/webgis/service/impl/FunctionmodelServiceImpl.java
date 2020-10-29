@@ -8,8 +8,10 @@ import com.trackme.webgis.entity.*;
 import com.trackme.webgis.service.*;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -169,6 +171,74 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
         List<MapEnclosureTreeVo> enclosureTree = (List<MapEnclosureTreeVo>) loginInfo.get("enclosureTree");
 
         return R.ok().put("mapToolMenu",mapToolMenu).put("terminalCommandMenu",terminalCommandMenu).put("webMenu",webMenu).put("deps",depList).put("enclosureTree",enclosureTree);
+    }
+
+    @Override
+    @Cacheable(value = "FuncTree",key = "#root.methodName")
+    public List<FuncTreeVo> getFuncTrees() {
+        List<FuncTreeVo> list = new ArrayList<>();
+        //后端功能菜单
+        List<FunctionmodelEntity> endFuncs = baseMapper.selectList(new QueryWrapper<FunctionmodelEntity>().eq("funcType", 1));
+
+        List<FuncTreeVo> endFunTreeList = endFuncs.stream().filter(fun ->
+                fun.getParentid() == -1
+        ).map(fun -> {
+            FuncTreeVo vo = new FuncTreeVo();
+            vo.setId(fun.getFuncid().toString());
+            vo.setName(fun.getDescr());
+            getFuncTreeChilderns(endFuncs, vo);
+            return vo;
+        }).collect(Collectors.toList());
+
+        FuncTreeVo endFuncVo = new FuncTreeVo();
+        endFuncVo.setChildren(endFunTreeList);
+        endFuncVo.setName("后端功能菜单");
+        endFuncVo.setId("1");
+
+        list.add(endFuncVo);
+
+        //前端功能菜单
+        final List<FunctionmodelEntity>  leadFuncs = baseMapper.selectList(new QueryWrapper<FunctionmodelEntity>().eq("funcType", 2));
+
+        List<FuncTreeVo> leadFunTreeList = leadFuncs.stream().filter(fun ->
+                fun.getParentid() == -1
+        ).map(fun -> {
+            FuncTreeVo vo = new FuncTreeVo();
+            vo.setId(fun.getFuncid().toString());
+            vo.setName(fun.getDescr());
+            getFuncTreeChilderns(leadFuncs, vo);
+            return vo;
+        }).collect(Collectors.toList());
+
+        FuncTreeVo leadFuncVo = new FuncTreeVo();
+        leadFuncVo.setChildren(leadFunTreeList);
+        leadFuncVo.setName("前端功能菜单");
+        leadFuncVo.setId("2");
+
+        list.add(leadFuncVo);
+
+        return list;
+    }
+
+    @Override
+    public List<FunctionmodelEntity> getRoleFunc(Integer roleid) {
+        return baseMapper.selectRoleFunc(roleid);
+    }
+
+    public void getFuncTreeChilderns(List<FunctionmodelEntity> funcs,FuncTreeVo funcTree) {
+        if (null != funcs && funcs.size()>0) {
+            List<FuncTreeVo> funcTreeVos = funcs.stream().filter(fun ->
+                    Integer.parseInt(funcTree.getId()) == fun.getParentid()
+            ).map(fun -> {
+                FuncTreeVo fv = new FuncTreeVo();
+                fv.setId(fun.getFuncid().toString());
+                fv.setName(fun.getDescr());
+                getFuncTreeChilderns(funcs, fv);
+                return fv;
+            }).collect(Collectors.toList());
+
+            funcTree.setChildren(funcTreeVos);
+        }
     }
 
 

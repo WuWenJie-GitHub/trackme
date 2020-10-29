@@ -2,8 +2,16 @@ package com.trackme.webgis.service.impl;
 
 import com.trackme.common.utils.MyStringUtils;
 import com.trackme.common.vo.OptionVo;
+import com.trackme.common.vo.RoleVo;
+import com.trackme.webgis.entity.FunctionmodelEntity;
+import com.trackme.webgis.entity.RolefuncEntity;
+import com.trackme.webgis.service.FunctionmodelService;
+import com.trackme.webgis.service.RolefuncService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,6 +30,11 @@ import com.trackme.webgis.service.RoleService;
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> implements RoleService {
 
+    @Autowired
+    FunctionmodelService functionmodelService;
+
+    @Autowired
+    RolefuncService rolefuncService;
 
     @Override
     public List<OptionVo> getRoleOptions() {
@@ -49,5 +62,68 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
                 wrapper
         );
         return new PageUtils(page);
+    }
+
+    @Override
+    public RoleVo getRoleInfo(Integer roleid) {
+        RoleEntity role = baseMapper.selectById(roleid);
+
+        List<FunctionmodelEntity> list = functionmodelService.getRoleFunc(roleid);
+        List<Integer> menuIdList = list.stream().map(f -> {
+            return f.getFuncid();
+        }).collect(Collectors.toList());
+
+        return new RoleVo(role.getName(),roleid,role.getRemark(),menuIdList);
+    }
+
+    @Override
+    public void updateRoleVo(RoleVo roleVo) {
+        RoleEntity role = new RoleEntity();
+        role.setRemark(roleVo.getRemark());
+        role.setName(roleVo.getRoleName());
+        role.setRoleid(roleVo.getRoleId());
+        baseMapper.updateById(role);
+
+
+        //先把角色对应的数据删除
+        rolefuncService.remove(new QueryWrapper<RolefuncEntity>().eq("role_id",roleVo.getRoleId()));
+
+        //重新新增
+        if (null != roleVo.getMenuIdList() && roleVo.getMenuIdList().size()>0) {
+            List<RolefuncEntity> rfs = roleVo.getMenuIdList().stream().filter(f ->
+                    f != -666666 && f != 1 && f != 2 // 前后端功能菜单节点的id为12 -666666为半选中节点
+            ).map(f -> {
+                RolefuncEntity rf = new RolefuncEntity();
+                rf.setRoleId(roleVo.getRoleId());
+                rf.setSysFuncId(f);
+                return rf;
+            }).collect(Collectors.toList());
+
+            rolefuncService.saveBatch(rfs);
+        }
+    }
+
+    @Override
+    public void saveRoleVo(RoleVo roleVo) {
+        RoleEntity role = new RoleEntity();
+        role.setRemark(roleVo.getRemark());
+        role.setCreatedate(new Date());
+        role.setName(roleVo.getRoleName());
+        baseMapper.insert(role);
+
+        Integer roleid = role.getRoleid();
+        if (null != roleVo.getMenuIdList() && roleVo.getMenuIdList().size()>0) {
+            List<RolefuncEntity> rfs = roleVo.getMenuIdList().stream().filter(f ->
+                    f != -666666 && f != 1 && f != 2 // 前后端功能菜单节点的id为12 -666666为半选中节点
+            ).map(f -> {
+                RolefuncEntity rf = new RolefuncEntity();
+                rf.setRoleId(roleid);
+                rf.setSysFuncId(f);
+                return rf;
+            }).collect(Collectors.toList());
+
+            rolefuncService.saveBatch(rfs);
+        }
+
     }
 }
