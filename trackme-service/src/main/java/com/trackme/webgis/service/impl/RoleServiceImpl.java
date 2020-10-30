@@ -1,7 +1,7 @@
 package com.trackme.webgis.service.impl;
 
 import com.trackme.common.utils.MyStringUtils;
-import com.trackme.common.vo.OptionVo;
+import com.trackme.common.vo.Option;
 import com.trackme.common.vo.RoleVo;
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.entity.RolefuncEntity;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,6 +24,7 @@ import com.trackme.common.utils.Query;
 import com.trackme.webgis.mapper.RoleMapper;
 import com.trackme.webgis.entity.RoleEntity;
 import com.trackme.webgis.service.RoleService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -37,11 +37,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
     RolefuncService rolefuncService;
 
     @Override
-    public List<OptionVo> getRoleOptions() {
+    public List<Option> getRoleOptions() {
         List<RoleEntity> roles = this.list(new QueryWrapper<RoleEntity>().eq("deleted", 0));
         if (roles!=null && roles.size()>0) {
-            List<OptionVo> options = roles.stream().map(role -> {
-                OptionVo option = new OptionVo();
+            List<Option> options = roles.stream().map(role -> {
+                Option option = new Option();
                 option.setValue(role.getRoleid().toString());
                 option.setLabel(role.getName());
                 return option;
@@ -77,6 +77,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
     }
 
     @Override
+    @Transactional
     public void updateRoleVo(RoleVo roleVo) {
         RoleEntity role = new RoleEntity();
         role.setRemark(roleVo.getRemark());
@@ -104,6 +105,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
     }
 
     @Override
+    @Transactional
     public void saveRoleVo(RoleVo roleVo) {
         RoleEntity role = new RoleEntity();
         role.setRemark(roleVo.getRemark());

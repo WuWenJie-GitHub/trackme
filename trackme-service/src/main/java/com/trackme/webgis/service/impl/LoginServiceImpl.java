@@ -1,6 +1,5 @@
 package com.trackme.webgis.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trackme.common.constant.SecretConstant;
 import com.trackme.common.form.LoginForm;
@@ -8,19 +7,16 @@ import com.trackme.common.jwt.AESSecretUtil;
 import com.trackme.common.jwt.JwtHelper;
 import com.trackme.common.constant.Constant;
 import com.trackme.common.utils.R;
-import com.trackme.common.vo.MapEnclosureTreeVo;
+import com.trackme.common.vo.*;
 import com.trackme.common.vo.MapToolMenuVo;
 import com.trackme.common.vo.TerminalCommandMenuVo;
-import com.trackme.common.vo.WebMenuVo;
 import com.trackme.webgis.entity.DepartmentEntity;
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.service.*;
-import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -182,7 +177,8 @@ public class LoginServiceImpl implements LoginService {
      * 获取用户信息\用户权限\地图工具栏菜单\系统顶部的主菜单\终端命令菜单
      */
     @Override
-    @Cacheable(value = "loginUser",key = "#root.args[0]")
+//    @Cacheable(value = "loginUser",key = "#root.args[0]")
+//    @Cacheable(value = "loginUser")
     public R getLoginInfo(String userid) {
 
         String decryptUserId = AESSecretUtil.decryptToStr(userid, SecretConstant.DATAKEY);//解密客户编号

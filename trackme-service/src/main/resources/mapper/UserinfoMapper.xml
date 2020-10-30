@@ -4,34 +4,26 @@
 <mapper namespace="com.trackme.webgis.mapper.UserinfoMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.trackme.webgis.entity.UserinfoEntity" id="userinfoMap">
+    <resultMap type="com.trackme.common.vo.UserInfoVo" id="userinfovoMap">
         <result property="userid" column="userId"/>
         <result property="name" column="name"/>
         <result property="loginname" column="loginName"/>
         <result property="password" column="password"/>
         <result property="remark" column="remark"/>
         <result property="userstate" column="userState"/>
-        <result property="mapcenterlat" column="mapCenterLat"/>
-        <result property="mapcenterlng" column="mapCenterLng"/>
-        <result property="maplevel" column="mapLevel"/>
-        <result property="maptype" column="mapType"/>
-        <result property="updatetime" column="updateTime"/>
-        <result property="userflag" column="userFlag"/>
         <result property="createdate" column="createDate"/>
-        <result property="deleted" column="deleted"/>
-        <result property="tenantid" column="tenantId"/>
         <result property="owner" column="owner"/>
-        <result property="regionid" column="regionId"/>
-        <result property="superadmin" column="superAdmin"/>
-        <result property="ownerid" column="ownerId"/>
+        <result property="roleid" column="roleId"/>
+        <result property="rolename" column="rolename"/>
     </resultMap>
 
-    <select id="selectUserInfo" resultType="java.util.Map">
-        select ui.loginName,ui.name userName,ui.userState,ui.createDate,r.name roleName,ui.owner
+    <select id="selectUserInfo" resultMap="userinfovoMap">
+        select ui.userId,ui.loginName,ui.name,ui.userState,ui.createDate,r.roleId,r.name rolename,ui.owner
         FROM
             userinfo ui
-        INNER JOIN userrole ur ON ui.userId = ur.userId
-        INNER JOIN role r ON ur.roleId = r.roleId
+        LEFT JOIN userrole ur ON ui.userId = ur.userId
+        LEFT JOIN role r ON ur.roleId = r.roleId
+        where ui.deleted=0
         limit #{page},#{limit}
     </select>
 

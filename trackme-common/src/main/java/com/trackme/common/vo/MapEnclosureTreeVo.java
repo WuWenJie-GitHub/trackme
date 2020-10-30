@@ -10,7 +10,7 @@ import java.util.List;
  * @data: 2020/10/22 15:23
  */
 @Data
-public class MapEnclosureTreeVo extends ElementTreeVo {
+public class MapEnclosureTreeVo extends ElementTree {
     private List<MapEnclosureTreeVo> children;
 
     public MapEnclosureTreeVo(String name) {

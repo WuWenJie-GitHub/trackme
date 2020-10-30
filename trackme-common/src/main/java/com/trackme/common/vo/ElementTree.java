@@ -10,9 +10,8 @@ import java.util.List;
  * @data: 2020/10/22 15:24
  */
 @Data
-public class ElementTreeVo {
+public class ElementTree {
     private String id;
     private String name;
     private Boolean leaf = true; //指定节点是否为叶子节点，仅在指定了 lazy 属性的情况下生效
-
 }

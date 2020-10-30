@@ -10,6 +10,6 @@ import java.util.List;
  * @data: 2020/10/29 8:57
  */
 @Data
-public class FuncTreeVo extends ElementTreeVo {
+public class FuncTreeVo extends ElementTree {
     private List<FuncTreeVo> children; //指定子树为节点对象的某个属性值
 }

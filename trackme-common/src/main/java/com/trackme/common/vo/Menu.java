@@ -10,7 +10,7 @@ import java.util.Map;
  * @data: 2020/10/15 17:10
  */
 @Data
-public class MenuVo  {
+public class Menu {
 
     private int id;
     private String text;

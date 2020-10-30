@@ -1,11 +1,9 @@
 package com.trackme.webgis.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import com.trackme.common.vo.FuncTreeVo;
-import com.trackme.common.vo.OptionVo;
 import com.trackme.webgis.core.annotation.Log;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.trackme.webgis.entity.FunctionmodelEntity;
 import com.trackme.webgis.service.FunctionmodelService;
-import com.trackme.common.utils.PageUtils;
 import com.trackme.common.utils.R;
 
 

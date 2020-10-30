@@ -8,7 +8,7 @@ import lombok.Data;
  * @data: 2020/10/21 9:55
  */
 @Data
-public class OptionVo {
+public class Option {
     /*
      <el-form-item label="角色:">
         <el-select v-model="role" placeholder="请选择">

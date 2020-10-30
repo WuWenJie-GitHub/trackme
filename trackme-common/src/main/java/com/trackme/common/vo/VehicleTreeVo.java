@@ -10,7 +10,7 @@ import java.util.List;
  * @data: 2020/10/22 14:28
  */
 @Data
-public class VehicleTreeVo extends ElementTreeVo {
+public class VehicleTreeVo extends ElementTree {
     private String online = "0";
     private List<VehicleTreeVo> children;
 }

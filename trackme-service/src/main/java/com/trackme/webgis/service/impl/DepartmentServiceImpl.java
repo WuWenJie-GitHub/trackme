@@ -2,14 +2,18 @@ package com.trackme.webgis.service.impl;
 
 import com.trackme.common.jwt.JwtHelper;
 import com.trackme.common.utils.R;
+import com.trackme.common.vo.DepartTreeeVo;
 import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.service.LoginService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -48,6 +52,18 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         List<DepartmentEntity> list = baseMapper.selectUserDepPages(page,limit,u.getUserid());
 
         return new PageUtils(list,getUserDeps(u.getUserid()).size(),page,limit);
+    }
+
+    @Override
+    @Cacheable(value = "depTree")
+    public List<DepartTreeeVo> getDepTree() {
+        List<DepartmentEntity> dep = baseMapper.selectList(null);
+        return  dep.stream().map(d -> {
+            DepartTreeeVo vo = new DepartTreeeVo();
+            vo.setId(d.getDepid().toString());
+            vo.setName(d.getName());
+            return vo;
+        }).collect(Collectors.toList());
     }
 
 

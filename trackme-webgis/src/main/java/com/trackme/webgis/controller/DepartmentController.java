@@ -1,8 +1,10 @@
 package com.trackme.webgis.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.trackme.common.vo.DepartTreeeVo;
 import com.trackme.webgis.core.annotation.Log;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,16 @@ public class DepartmentController {
         return R.ok().put("page", page);
     }
 
+    /**
+     * 获取部列表树
+     */
+    @Log("获取部列表树")
+    @ApiOperation("获取部列表树")
+    @RequestMapping("/depTree")
+    public R depTree(){
+        List<DepartTreeeVo> depTree = departmentService.getDepTree();
+        return R.ok().put("depTree", depTree);
+    }
 
     /**
      * 信息

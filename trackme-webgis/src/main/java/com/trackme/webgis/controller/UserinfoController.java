@@ -1,8 +1,11 @@
 package com.trackme.webgis.controller;
 
+import java.util.Arrays;
 import java.util.Map;
 
+import com.trackme.common.vo.UserInfoVo;
 import com.trackme.webgis.core.annotation.Log;
+import com.trackme.webgis.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import com.trackme.webgis.service.UserinfoService;
 import com.trackme.common.utils.PageUtils;
 import com.trackme.common.utils.R;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -29,6 +33,8 @@ public class UserinfoController {
     @Autowired
     private UserinfoService userinfoService;
 
+    @Autowired
+    private LoginService loginService;
     /**
      * 列表
      */
@@ -46,16 +52,16 @@ public class UserinfoController {
      */
     @RequestMapping("/info/{userid}")
     public R info(@PathVariable("userid") Integer userid){
-
-        return R.ok().put("userinfo", null);
+        UserInfoVo userInfoVo = userinfoService.getUserInfoVo(userid);
+        return R.ok().put("userinfo", userInfoVo);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody UserinfoEntity userinfo){
-
+    public R save(@RequestBody UserInfoVo userInfoVo, HttpServletRequest request){
+        userinfoService.saveUserInfoVo(userInfoVo,request);
         return R.ok();
     }
 
@@ -63,8 +69,8 @@ public class UserinfoController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody UserinfoEntity userinfo){
-
+    public R update(@RequestBody UserInfoVo userInfoVo){
+        userinfoService.updateUserInfoVo(userInfoVo);
         return R.ok();
     }
 
@@ -73,14 +79,8 @@ public class UserinfoController {
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Integer[] userids){
-
+        userinfoService.removeByIds(Arrays.asList(userids));
         return R.ok();
     }
 
-    @GetMapping("/state")
-//    @Log("角色列表")
-    public R state(){
-        Map<String,Object> option = userinfoService.getUserStateOption();
-        return R.ok().put("option",option);
-    }
 }

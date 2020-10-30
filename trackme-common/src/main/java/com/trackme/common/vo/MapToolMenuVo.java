@@ -1,6 +1,5 @@
 package com.trackme.common.vo;
 
-import com.trackme.common.vo.MenuVo;
 import lombok.Data;
 
 /**
@@ -9,6 +8,6 @@ import lombok.Data;
  * @data: 2020/10/15 17:17
  */
 @Data
-public class MapToolMenuVo extends MenuVo {
+public class MapToolMenuVo extends Menu {
 
 }

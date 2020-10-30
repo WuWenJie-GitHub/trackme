@@ -10,7 +10,7 @@ import java.util.List;
  * @data: 2020/10/15 17:25
  */
 @Data
-public class WebMenuVo extends MenuVo {
+public class WebMenuVo extends Menu {
 
     private List<WebMenuVo> menu;
 }

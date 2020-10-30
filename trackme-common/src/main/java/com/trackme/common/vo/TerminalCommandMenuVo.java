@@ -8,5 +8,5 @@ import lombok.Data;
  * @data: 2020/10/15 17:28
  */
 @Data
-public class TerminalCommandMenuVo extends MenuVo {
+public class TerminalCommandMenuVo extends Menu {
 }

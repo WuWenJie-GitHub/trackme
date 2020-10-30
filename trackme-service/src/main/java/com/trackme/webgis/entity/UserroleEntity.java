@@ -19,14 +19,8 @@ import lombok.Data;
 public class UserroleEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * $column.comments
-	 */
-	@TableId
 	private Integer userid;
-	/**
-	 * $column.comments
-	 */
+
 	private Integer roleid;
 
 }

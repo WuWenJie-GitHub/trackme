@@ -3,12 +3,7 @@ package com.trackme.webgis.webapi;
 import com.trackme.common.form.LoginForm;
 import com.trackme.common.jwt.JwtHelper;
 import com.trackme.common.utils.R;
-import com.trackme.common.vo.MapToolMenuVo;
-import com.trackme.common.vo.TerminalCommandMenuVo;
-import com.trackme.common.vo.WebMenuVo;
 import com.trackme.webgis.core.annotation.Log;
-import com.trackme.webgis.entity.FunctionmodelEntity;
-import com.trackme.webgis.entity.UserinfoEntity;
 import com.trackme.webgis.service.FunctionmodelService;
 import com.trackme.webgis.service.LoginService;
 import io.jsonwebtoken.Claims;
@@ -25,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @description 登录

@@ -1,5 +1,6 @@
 package com.trackme.webgis.mapper;
 
+import com.trackme.common.vo.UserInfoVo;
 import com.trackme.webgis.entity.UserinfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,5 +19,5 @@ import java.util.Map;
 @Mapper
 public interface UserinfoMapper extends BaseMapper<UserinfoEntity> {
 
-    List<Map<String,Object>> selectUserInfo(@Param("page") int page,@Param("limit")int limit);
+    List<UserInfoVo> selectUserInfo(@Param("page") int page, @Param("limit")int limit);
 }

@@ -14,15 +14,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.trackme.common.utils.PageUtils;
-import com.trackme.common.utils.Query;
 
 import com.trackme.webgis.mapper.FunctionmodelMapper;
 
@@ -174,7 +169,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
     }
 
     @Override
-    @Cacheable(value = "FuncTree",key = "#root.methodName")
+    @Cacheable(value = "funcTree",key = "#root.methodName")
     public List<FuncTreeVo> getFuncTrees() {
         List<FuncTreeVo> list = new ArrayList<>();
         //后端功能菜单
@@ -242,7 +237,7 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
     }
 
 
-    public void setMenuVoAttr(MenuVo menuVo, FunctionmodelEntity func, List<FunctionmodelEntity> funcModes){
+    public void setMenuVoAttr(Menu menuVo, FunctionmodelEntity func, List<FunctionmodelEntity> funcModes){
         if (funcModes!=null && funcModes.size()>0) {
             funcModes.stream().filter(funcMode ->
                     funcMode.getFuncid() != Constant.TERMINAL_COMMAND_MENU && funcMode.getDeleted() == 0 && func.getParentid().equals(funcMode.getFuncid())
