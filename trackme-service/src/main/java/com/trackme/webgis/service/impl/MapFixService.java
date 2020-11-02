@@ -2,7 +2,7 @@ package com.trackme.webgis.service.impl;
 
 import java.util.List;
 
-import com.trackme.util.Constants;
+import com.trackme.common.constant.MapContants;
 import com.trackme.webgis.entity.PointLatLng;
 
 /**
@@ -25,7 +25,8 @@ public class MapFixService {
 	static double ee = 0.00669342162296594323;
 
 	public static PointLatLng fix(double lat, double lng, String mapType) {
-		if (Constants.MAP_BAIDU.equals(mapType)) {
+
+		if (MapContants.MAP_BAIDU.equals(mapType)) {
 			return BaiduMapFixService.fix(lat, lng,
 					BaiduMapFixService.COORD_TYPE_GPS);
 		} else {
