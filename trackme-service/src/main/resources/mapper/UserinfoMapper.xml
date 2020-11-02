@@ -23,7 +23,18 @@
             userinfo ui
         LEFT JOIN userrole ur ON ui.userId = ur.userId
         LEFT JOIN role r ON ur.roleId = r.roleId
-        where ui.deleted=0
+        <where>
+            ui.deleted=0
+            <if test="loginname != null and loginname != ''">
+                AND ui.loginName like concat(concat('%',#{loginname}),'%')
+            </if>
+            <if test="userstate != null and userstate != ''">
+                AND ui.userState = #{userstate}
+            </if>
+            <if test="roleid != null and roleid != ''">
+                AND r.roleId = #{roleid}
+            </if>
+        </where>
         limit #{page},#{limit}
     </select>
 

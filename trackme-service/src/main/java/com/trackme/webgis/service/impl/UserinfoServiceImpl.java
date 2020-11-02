@@ -49,8 +49,13 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, UserinfoEnt
     public PageUtils queryPage(Map<String, Object> params) {
         int page = Integer.parseInt(params.get("page").toString());
         int limit = Integer.parseInt(params.get("limit").toString());
+
+        Object loginname = params.get("loginname");
+        Object userstate = params.get("userstate");
+        Object roleid = params.get("roleid");
+
         page = limit * page - limit;
-        List<UserInfoVo> userInfoVos =  baseMapper.selectUserInfo(page,limit);
+        List<UserInfoVo> userInfoVos =  baseMapper.selectUserInfo(page,limit,loginname,userstate,roleid);
         Integer count = baseMapper.selectCount(null);
         PageUtils pageUtils = new PageUtils(userInfoVos, count, page, limit);
         return pageUtils;

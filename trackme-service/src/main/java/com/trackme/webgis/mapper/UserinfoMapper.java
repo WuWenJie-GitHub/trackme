@@ -19,5 +19,6 @@ import java.util.Map;
 @Mapper
 public interface UserinfoMapper extends BaseMapper<UserinfoEntity> {
 
-    List<UserInfoVo> selectUserInfo(@Param("page") int page, @Param("limit")int limit);
+    List<UserInfoVo> selectUserInfo(@Param("page") int page, @Param("limit")int limit,@Param("loginname") Object loginname,@Param("userstate") Object userstate,@Param("roleid") Object roleid);
+
 }
