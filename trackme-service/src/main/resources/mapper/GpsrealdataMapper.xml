@@ -41,6 +41,23 @@
         <result property="lac" column="LAC"/>
         <result property="mnc" column="MNC"/>
     </resultMap>
+    <select id="selectGpsRealData" resultType="map">
+        select g.*,d.name as depName from gpsrealdata g,department d
+        <where>
+            g.depId=d.depId
+             and g.depId in
+            <foreach collection="depIds" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+             <if test="maxLatitude!='' or maxLatitude!=null">
+             and
+                 g.latitude  &lt;= #{maxLatitude} and g.latitude &gt;= #{minLatitude} and
+                 g.longitude &lt;= #{maxLongitude} and g.longitude &gt;= #{minLongitude}
+             </if>
+             limit #{currentPage},#{pageSize}
+        </where>
+
+    </select>
 
 
 </mapper>

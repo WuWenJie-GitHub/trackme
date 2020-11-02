@@ -92,4 +92,50 @@
     </select>
 
 
+    <!--用于前台展现车辆静态信息、业户信息、驾驶员信息,电子运单信息等 -->
+    <select id="selectStaticVehicleInfo" resultType="java.util.Map">
+        select v.vehicleId,v.plateNo, v.simNo, d.name as
+		depName,
+		v.plateColor,r.driverId, r.driverName,
+		m.name as memberName ,
+
+		v.memberId,
+		v.region, e.fullName as regionName, i.description as
+		industryType ,t.name as
+		vehicleType , eb.eContent as ewayBill
+		from
+		vehicle v
+		left join
+		MemberInfo m on v.memberId = m.id
+		left join
+		DriverInfo r on v.vehicleId
+		= r.vehicleId
+		left join department d on
+		v.depId = d.depId
+		left join
+		region e on e.code = v.region
+		left join
+		industryType i on i.code =
+		v.industry
+		left join vehicleType t on t.code
+		= v.vehicleType
+		left join
+		ewayBill eb on eb.vehicleId =
+		v.vehicleId
+	    <where>
+            1=1
+            <if test="vehicleId!=null and vehicleId!=''">
+                v.vehicleId=#{vehicleId}
+            </if>
+
+        </where>
+        <if test="depIds!=null and depIds.size>0">
+            <foreach collection="depIds" item="id" index="index"
+                     open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+
+
 </mapper>
