@@ -35,9 +35,7 @@ public class DriverinfoServiceImpl extends ServiceImpl<DriverinfoMapper, Driveri
         int limit = Integer.parseInt(params.get("limit").toString());
         page = limit * page - limit;
 
-        String token = loginService.getRequestToken(request);
-        Claims claims = JwtHelper.parseJWT(token);
-        R r = loginService.getLoginInfo((String) claims.get("userId"));
+        R r = loginService.getLoginInfo(null);
         UserinfoEntity u = (UserinfoEntity) r.get("user");
 
         List<Map<String,Object>> list = baseMapper.selectUserDriPages(page,limit,u.getUserid());

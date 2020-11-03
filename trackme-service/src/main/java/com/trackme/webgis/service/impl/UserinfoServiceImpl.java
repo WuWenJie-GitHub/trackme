@@ -50,12 +50,9 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, UserinfoEnt
         int page = Integer.parseInt(params.get("page").toString());
         int limit = Integer.parseInt(params.get("limit").toString());
 
-        Object loginname = params.get("loginname");
-        Object userstate = params.get("userstate");
-        Object roleid = params.get("roleid");
-
         page = limit * page - limit;
-        List<UserInfoVo> userInfoVos =  baseMapper.selectUserInfo(page,limit,loginname,userstate,roleid);
+
+        List<UserInfoVo> userInfoVos = baseMapper.selectUserInfoParams(page,limit,params);
         Integer count = baseMapper.selectCount(null);
         PageUtils pageUtils = new PageUtils(userInfoVos, count, page, limit);
         return pageUtils;
@@ -91,10 +88,8 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, UserinfoEnt
 
     @Override
     @Transactional
-    public void saveUserInfoVo(UserInfoVo userInfoVo,HttpServletRequest request) {
-        String requestToken = loginService.getRequestToken(request);
-        JwtHelper.parseJWT(requestToken);
-        R r = loginService.getLoginInfo(JwtHelper.parseJWT(requestToken).get("userId").toString());
+    public void saveUserInfoVo(UserInfoVo userInfoVo) {
+        R r = loginService.getLoginInfo(loginService.getEncryptUserid());
         UserinfoEntity login = (UserinfoEntity) r.get("user");
 
         UserinfoEntity user = new UserinfoEntity();

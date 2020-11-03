@@ -17,25 +17,24 @@
         <result property="rolename" column="rolename"/>
     </resultMap>
 
-    <select id="selectUserInfo" resultMap="userinfovoMap">
+    <select id="selectUserInfoParams" resultType="com.trackme.common.vo.UserInfoVo">
         select ui.userId,ui.loginName,ui.name,ui.userState,ui.createDate,r.roleId,r.name rolename,ui.owner
         FROM
-            userinfo ui
+        userinfo ui
         LEFT JOIN userrole ur ON ui.userId = ur.userId
         LEFT JOIN role r ON ur.roleId = r.roleId
         <where>
             ui.deleted=0
-            <if test="loginname != null and loginname != ''">
-                AND ui.loginName like concat(concat('%',#{loginname}),'%')
+            <if test="params.loginname != null and params.loginname != ''">
+                AND ui.loginName like concat(concat('%',#{params.loginname}),'%')
             </if>
-            <if test="userstate != null and userstate != ''">
-                AND ui.userState = #{userstate}
+            <if test="params.userstate != null and params.userstate != ''">
+                AND ui.userState = #{params.userstate}
             </if>
-            <if test="roleid != null and roleid != ''">
-                AND r.roleId = #{roleid}
+            <if test="params.roleid != null and params.roleid != ''">
+                AND r.roleId = #{params.roleid}
             </if>
         </where>
         limit #{page},#{limit}
     </select>
-
 </mapper>

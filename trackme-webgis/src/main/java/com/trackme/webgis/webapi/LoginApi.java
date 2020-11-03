@@ -69,10 +69,8 @@ public class LoginApi {
     @GetMapping("/userInfo")
     @Log("获取用户信息")
     @ApiOperation(value = "获取用户信息", notes = "获取用户信息")
-    public R getLoginInfo(HttpServletRequest request){
-        String token = loginService.getRequestToken(request);
-        Claims claims = JwtHelper.parseJWT(token);
-        return loginService.getLoginInfo((String)claims.get("userId"));
+    public R getLoginInfo(){
+        return loginService.getLoginInfo(loginService.getEncryptUserid());
     }
 
     @GetMapping("/loginOut")
@@ -86,8 +84,8 @@ public class LoginApi {
     @GetMapping("/getAllMenu")
     @Log("获取用户信息|地图工具栏菜单|系统顶部的主菜单|终端命令菜单|部门列表|地图区域列表")
     @ApiOperation(value = "获取用户信息|地图工具栏菜单|系统顶部的主菜单|终端命令菜单|部门列表|地图区域列表")
-    public R getAllMenu(HttpServletRequest request){
-       return functionmodelService.getAllMenu(request);
+    public R getAllMenu(){
+       return functionmodelService.getAllMenu();
     }
 
 //    /**

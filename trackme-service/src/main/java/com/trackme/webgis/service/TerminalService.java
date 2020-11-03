@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public interface TerminalService extends IService<TerminalEntity> {
 
-    PageUtils getUserTerPages(Map<String,Object> params, HttpServletRequest request);
+    PageUtils getUserTerPages(Map<String,Object> params);
 }
 
 

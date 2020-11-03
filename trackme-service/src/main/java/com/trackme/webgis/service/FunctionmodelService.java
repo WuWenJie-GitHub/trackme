@@ -25,7 +25,7 @@ public interface FunctionmodelService extends IService<FunctionmodelEntity> {
 
     List<TerminalCommandMenuVo> getTerminalCommandMenu(List<FunctionmodelEntity> funcModes);
 
-    R getAllMenu(HttpServletRequest request);
+    R getAllMenu();
 
     List<FuncTreeVo> getFuncTrees();
 

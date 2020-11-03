@@ -34,14 +34,12 @@ public class TerminalServiceImpl extends ServiceImpl<TerminalMapper, TerminalEnt
     LoginService loginService;
 
     @Override
-    public PageUtils getUserTerPages(Map<String, Object> params, HttpServletRequest request) {
+    public PageUtils getUserTerPages(Map<String, Object> params) {
         int page = Integer.parseInt(params.get("page").toString());
         int limit = Integer.parseInt(params.get("limit").toString());
         page = limit * page - limit;
 
-        String token = loginService.getRequestToken(request);
-        Claims claims = JwtHelper.parseJWT(token);
-        R r = loginService.getLoginInfo((String) claims.get("userId"));
+        R r = loginService.getLoginInfo(loginService.getEncryptUserid());
 
         List<DepartmentEntity> deps = (List<DepartmentEntity>) r.get("deps");
         List<Integer> depIds = deps.stream().map(dep -> {

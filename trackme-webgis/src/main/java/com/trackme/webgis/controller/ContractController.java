@@ -35,8 +35,8 @@ public class ContractController {
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-
-        return R.ok().put("page", null);
+        PageUtils page = contractService.queryPage(params);
+        return R.ok().put("page", page);
     }
 
 

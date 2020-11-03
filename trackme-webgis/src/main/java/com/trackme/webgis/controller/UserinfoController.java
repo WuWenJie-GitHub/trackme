@@ -60,8 +60,8 @@ public class UserinfoController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody UserInfoVo userInfoVo, HttpServletRequest request){
-        userinfoService.saveUserInfoVo(userInfoVo,request);
+    public R save(@RequestBody UserInfoVo userInfoVo){
+        userinfoService.saveUserInfoVo(userInfoVo);
         return R.ok();
     }
 

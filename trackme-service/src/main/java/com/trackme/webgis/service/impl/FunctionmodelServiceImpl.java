@@ -154,10 +154,9 @@ public class FunctionmodelServiceImpl extends ServiceImpl<FunctionmodelMapper, F
      * 根据用户权限，获取地图工具栏菜单\系统顶部的主菜单\终端命令菜单\部门列表\地图区域列表
      */
     @Override
-    public R getAllMenu(HttpServletRequest request) {
-        String token = loginService.getRequestToken(request);
-        Claims claims = JwtHelper.parseJWT(token);
-        R loginInfo = loginService.getLoginInfo((String) claims.get("userId"));
+    public R getAllMenu() {
+
+        R loginInfo = loginService.getLoginInfo(null);
 
         List<MapToolMenuVo> mapToolMenu = (List<MapToolMenuVo>) loginInfo.get("mapToolMenu");
         List<WebMenuVo> webMenu = (List<WebMenuVo>) loginInfo.get("webMenu");

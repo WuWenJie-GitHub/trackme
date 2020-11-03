@@ -23,4 +23,6 @@ public interface LoginService {
     R loginOut(HttpServletResponse response);
 
     String getRequestToken(HttpServletRequest request);
+
+    String getEncryptUserid();
 }

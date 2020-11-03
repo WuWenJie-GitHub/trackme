@@ -15,6 +15,7 @@ import java.util.Map;
  */
 public interface ContractService extends IService<ContractEntity> {
 
+    PageUtils queryPage(Map<String,Object> params);
 }
 
 

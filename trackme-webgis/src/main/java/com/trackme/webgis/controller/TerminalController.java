@@ -39,8 +39,8 @@ public class TerminalController {
     @Log("获取当前登录用户下终端信息列表")
     @ApiOperation("获取当前登录用户下终端信息列表")
     @RequestMapping("/userTerPages")
-    public R userTerPages(@RequestParam Map<String, Object> params, HttpServletRequest request){
-        PageUtils pages = terminalService.getUserTerPages(params,request);
+    public R userTerPages(@RequestParam Map<String, Object> params){
+        PageUtils pages = terminalService.getUserTerPages(params);
         return R.ok().put("page", pages);
     }
 

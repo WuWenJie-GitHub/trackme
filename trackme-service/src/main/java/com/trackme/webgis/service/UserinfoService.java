@@ -23,7 +23,7 @@ public interface UserinfoService extends IService<UserinfoEntity> {
 
     void updateUserInfoVo(UserInfoVo userInfoVo);
 
-    void saveUserInfoVo(UserInfoVo userInfoVo,HttpServletRequest request);
+    void saveUserInfoVo(UserInfoVo userInfoVo);
 
     UserInfoVo getUserInfoVo(Integer userid);
 }

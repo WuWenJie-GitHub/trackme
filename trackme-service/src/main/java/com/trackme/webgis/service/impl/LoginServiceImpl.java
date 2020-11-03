@@ -6,6 +6,8 @@ import com.trackme.common.form.LoginForm;
 import com.trackme.common.jwt.AESSecretUtil;
 import com.trackme.common.jwt.JwtHelper;
 import com.trackme.common.constant.Constant;
+import com.trackme.common.utils.HttpContextUtils;
+import com.trackme.common.utils.MyStringUtils;
 import com.trackme.common.utils.R;
 import com.trackme.common.vo.*;
 import com.trackme.common.vo.MapToolMenuVo;
@@ -19,6 +21,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,6 +61,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     EnclosureService enclosureService;
+
 
     @Override
     public R login(LoginForm loginForm,HttpServletRequest request) {
@@ -173,13 +178,17 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * 根据请求头里的token id（加过密的）值
+     * userid 是 null 的话，默认从求头里的token id（加过密的）值
      * 获取用户信息\用户权限\地图工具栏菜单\系统顶部的主菜单\终端命令菜单
      */
     @Override
 //    @Cacheable(value = "loginUser",key = "#root.args[0]")
 //    @Cacheable(value = "loginUser")
     public R getLoginInfo(String userid) {
+
+        if (!MyStringUtils.isNotNull(userid)) {
+            userid = getEncryptUserid();
+        }
 
         String decryptUserId = AESSecretUtil.decryptToStr(userid, SecretConstant.DATAKEY);//解密客户编号
         int id = Integer.parseInt(decryptUserId);
@@ -239,6 +248,11 @@ public class LoginServiceImpl implements LoginService {
      * 获取请求的token
      */
     public String getRequestToken(HttpServletRequest httpRequest){
+
+        if (httpRequest == null) {
+            httpRequest = HttpContextUtils.getHttpServletRequest();
+        }
+
         //从header中获取token
         String token = httpRequest.getHeader("token");
 
@@ -248,5 +262,10 @@ public class LoginServiceImpl implements LoginService {
         }
 
         return token;
+    }
+
+    @Override
+    public String getEncryptUserid() {
+        return getRequestToken(null) != null ? JwtHelper.parseJWT(getRequestToken(null)).get("userId").toString() : null;
     }
 }
